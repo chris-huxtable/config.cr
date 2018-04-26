@@ -49,14 +49,6 @@ username = config.as_s("username")
 link = config.as_a("link")
 ```
 
-Sample Configuration:
-```
-# File:     program.conf
-# Modified: April 26, 2018 (Christian Huxtable)
-
-```
-
-
 
 ## Format
 
