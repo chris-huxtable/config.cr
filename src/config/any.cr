@@ -193,6 +193,42 @@ struct Config::Any
 	end
 
 
+
+	def as_a(key : String, entry_type : U.class) : Array(U) forall U
+		return self[key].raw.as(Array).map() { |elm| elm.as(U) }
+	end
+
+	def as_a?(key : String, entry_type : U.class) : Array(U)? forall U
+		return self[key].raw.as(Array).map() { |elm|
+			return nil if ( !elm.is_a?(U) )
+			next elm.as(U)
+		}
+	end
+
+	def as_h(key : String, entry_type : U.class) : Hash(String, U) forall U
+		hash = self[key].raw.as(Hash)
+		hash_new = Hash(String, U).new(nil, hash.size)
+		hash.each() { |k,v| hash_new[k] = v.as(U) }
+		return hash_new
+	end
+
+	def as_h?(key : String, entry_type : U.class) : Hash(String, U)? forall U
+		hash = self[key]?
+		return nil if ( hash.nil? )
+
+		hash = hash.raw.as?(Hash)
+		return nil if ( hash.nil? )
+
+		hash_new = Hash(String, U).new(nil, hash.size)
+		hash.each() do |k,v|
+			v = v.as?(U)
+			return nil if ( v.nil? )
+			hash_new[k] = v
+		end
+
+		return hash_new
+	end
+
 	# :nodoc:
 	def inspect(io)
 		return @raw.inspect(io)

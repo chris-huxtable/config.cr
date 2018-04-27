@@ -66,6 +66,27 @@ describe Config::Any do
 			Config.parse("foo: {foo: bar}").as_h?("foo").should eq({"foo" => Config::Any.new("bar")})
 			Config.parse("foo: true").as_h?("foo").should be_nil
 		end
+
+		it "gets array of type" do
+			Config.parse("foo: [this, is, a, test]").as_a("foo", String).should eq(["this", "is", "a", "test"])
+			Config.parse("foo: [this, is, a, test]").as_a?("foo", String).should eq(["this", "is", "a", "test"])
+
+			expect_raises Exception do
+				Config.parse("foo: [0, 1, 2, 3]").as_a("foo", String)
+			end
+			Config.parse("foo: [0, 1, 2, 3]").as_a?("foo", String).should be_nil
+
+		end
+
+		it "gets hash of type" do
+			Config.parse("foo: {this: is, a: test}").as_h("foo", String).should eq({"this" => "is", "a" => "test"})
+			Config.parse("foo: {this: is, a: test}").as_h?("foo", String).should eq({"this" => "is", "a" => "test"})
+
+			expect_raises Exception do
+				Config.parse("foo: {this: 1, a: 3}").as_h("foo", String)
+			end
+			Config.parse("foo: {this: 1, a: 3}").as_h?("foo", String).should be_nil
+		end
 	end
 
 	describe "#size" do
