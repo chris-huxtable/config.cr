@@ -41,11 +41,10 @@ class Config::Parser
 			key = token.string_value()
 			is_macro = token.type?(:macro)
 
-			next_token()
+			next_data_token()
 			expect_type(:":", :"=")
-
 			is_assignment = token.type?(:"=")
-			next_token()
+			next_data_token()
 
 			if ( is_macro )
 				if ( is_assignment )
@@ -100,9 +99,9 @@ class Config::Parser
 			expect_type(:string)
 			key = token.string_value()
 
-			next_token()
+			next_data_token()
 			expect_type(:":")
-			next_token()
+			next_data_token()
 
 			object[key] = parse_value()
 			expect_type(:",", :"\n", :"}")
@@ -135,6 +134,12 @@ class Config::Parser
 	private def next_token_passthrough(value) : Type
 		next_token()
 		return value
+	end
+
+	private def next_data_token() : Token
+		token = next_token()
+		skip_seporators()
+		return token
 	end
 
 

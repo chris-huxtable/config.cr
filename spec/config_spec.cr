@@ -70,6 +70,9 @@ describe Config::Parser do
 		it_parses "foo: {bar: 1}",					{ "foo" => {"bar" => 1} }
 		it_parses "foo: {bar: 1, foo: 1.5}",		{ "foo" => {"bar" => 1, "foo" => 1.5} }
 		it_parses "foo: {bar: 1\n foo: 1.5}",		{ "foo" => {"bar" => 1, "foo" => 1.5} }
+
+		it_parses "foo \t\n: \t\nbar",				{ "foo" => "bar" }
+		it_parses "foo:\n{\nbar: 1\n}",				{ "foo" => {"bar" => 1} }
 	end
 
 	it "parses odd entries" do
@@ -139,7 +142,7 @@ describe Config::Parser do
 		it_raises_on_parse "foo: \"unterminated string"
 		it_raises_on_parse "foo: "
 
-		it_raises_on_parse "foo \t\n: \t\nbar"
+
 	end
 
 	it "allows macros" do
