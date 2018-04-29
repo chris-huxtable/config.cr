@@ -192,8 +192,6 @@ struct Config::Any
 		return self[key].as_nil()
 	end
 
-
-
 	def as_a(key : String, entry_type : U.class) : Array(U) forall U
 		return self[key].raw.as(Array).map() { |elm| elm.as(U) }
 	end
