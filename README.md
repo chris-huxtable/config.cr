@@ -25,7 +25,7 @@ Add this to your application's `shard.yml`:
 
 ```yaml
 dependencies:
-  conf:
+  config:
     github: chris-huxtable/config.cr
 ```
 
