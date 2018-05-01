@@ -67,14 +67,14 @@ rate: 1000
 
 
 ### Strings:
-Unlike JSON, strings can be specified without quotes so long as it doesnt contain special characters like `:`, `=`, `{`, `}`, `[`, `]`, or `,`. Though, `:`, `=` are allowed if they are not a key.
+Unlike JSON, strings can be specified without quotes so long as it doesn't contain special characters like `:`, `=`, `{`, `}`, `[`, `]`, or `,`. Though, `:`, `=` are allowed if they are not a key.
 ```
 rate: This is a string.
 ```
 
 
-### Seporators:
-Unlike JSON, entries can be seporated with commas, or newlines.
+### Separators:
+Unlike JSON, entries can be separated with commas, or newlines.
 ```
 first: 1
 second: 2, third: 3
