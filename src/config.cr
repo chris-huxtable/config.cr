@@ -38,14 +38,12 @@ module Config
 
 	class ParseException < Error
 
-		@@backtrace_trace = false
-
 		getter location : Location
 
 		def initialize(message, @location : Location)
 			super("#{message} at #{@location.to_s}")
-			callstack = nil if ( @@backtrace_trace )
 		end
+
 	end
 
 end

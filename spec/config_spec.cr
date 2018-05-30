@@ -17,17 +17,16 @@ require "./spec_helper"
 
 private def it_parses(string, expected, file = __FILE__, line = __LINE__)
 	it "parses #{string}", file, line do
-		Config.parse(string).raw.should eq(expected)
+		Config.parse(string).raw.should(eq(expected), file, line)
 	end
 end
 
 private def it_raises_on_parse(string, file = __FILE__, line = __LINE__)
 	it "raises on parse #{string}", file, line do
-		expect_raises Config::ParseException do
-			Config.parse(string)
-		end
+		expect_raises(Config::ParseException, nil, file, line) { Config.parse(string) }
 	end
 end
+
 
 describe Config::Parser do
 
@@ -141,8 +140,6 @@ describe Config::Parser do
 		it_raises_on_parse "foo: [2.]"
 		it_raises_on_parse "foo: \"unterminated string"
 		it_raises_on_parse "foo: "
-
-
 	end
 
 	it "allows macros" do
