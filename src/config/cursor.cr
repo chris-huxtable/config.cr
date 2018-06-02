@@ -45,7 +45,7 @@ abstract class Config::Cursor
 	abstract def char?() : Char?
 
 	def char() : Char
-		return char?() || '\0'
+		return char?() || Char::ZERO
 	end
 
 	def char?(*chars : Char) : Bool
@@ -58,13 +58,18 @@ abstract class Config::Cursor
 		return ( char?() == nil || char?() == Char::ZERO )
 	end
 
+	def has_more?()
+		peek = peek?()
+		return !( peek == nil || peek == Char::ZERO )
+	end
+
 
 	# Movement
 
 	abstract def peek?() : Char?
 
 	def peek() : Char
-		return peek?() || '\0'
+		return peek?() || Char::ZERO
 	end
 
 	def peek?(*chars : Char) : Bool
@@ -122,6 +127,7 @@ class Config::IOCursor < Config::Cursor
 		lookahead = @lookahead
 		return lookahead if ( lookahead )
 		peek = @io.read_char()
+		peek = nil if ( peek == Char::ZERO )
 		@lookahead = peek
 		return peek
 	end

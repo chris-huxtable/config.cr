@@ -163,6 +163,7 @@ describe Config::Parser do
 		it_parses "$macro = [0,1,2], foo: $macro",			{ "foo" => [0,1,2] }
 		it_parses "$macro = {bar: 0}, foo: $macro",			{ "foo" => {"bar" => 0} }
 		it_parses "$macro = world, foo: \"hello $macro\"",	{ "foo" => "hello world" }
+		it_parses "$macro = hel, foo: \"${macro}lo world\"",	{ "foo" => "hello world" }
 
 		it_parses "$macro0 = test, $macro1 = $macro0, foo: $macro1", { "foo" => "test" }
 		it_parses "$macro = test, $macro: foo",				{ "test" => "foo" }

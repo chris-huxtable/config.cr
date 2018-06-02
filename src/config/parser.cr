@@ -18,7 +18,7 @@ require "./lexer"
 class Config::Parser
 
 	property max_nesting : UInt16 = 32_u16
-	property macros : Hash(String, Any) = Hash(String, Any).new()
+	property macros : Macros = Macros.new()
 
 
 	# Initialization

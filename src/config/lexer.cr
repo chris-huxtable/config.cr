@@ -19,7 +19,7 @@ class Config::Lexer
 
 	# Initializer
 
-	def initialize(input : String|IO, macros : Hash(String, Any) = Hash(String, Any).new())
+	def initialize(input : String|IO, macros : Macros = Macros.new())
 		@token			= Token.new()
 		@string_pool	= StringPool.new()
 
@@ -198,6 +198,13 @@ class Config::Lexer
 
 	private class Buffer
 
+		def self.new(cursor : Cursor, &block : Buffer -> Nil) : String
+			buffer = new(cursor)
+			yield(buffer)
+			return buffer.to_s
+		end
+
+
 		# MARK: - Initalization
 
 		def initialize(@cursor : Cursor)
@@ -216,7 +223,7 @@ class Config::Lexer
 			return @cursor.next()
 		end
 
-		def next?() : Char
+		def next?() : Char?
 			@buffer << @cursor.char()
 			return @cursor.next?()
 		end
@@ -245,28 +252,54 @@ class Config::Lexer
 			end
 		end
 
+		# Buffers until a newline character is found
+		def line() : Nil
+			return self.until('\n')
+		end
 
-
-		# Buffers @buffer.until the character for which the block yields `false`
-		def until(&block : Cursor -> Bool) : Nil
-			while ( !@cursor.eof?() && !yield(@cursor) )
+		# Buffers the characters while block yields `true`
+		def while(&block : Char -> Bool) : Nil
+			while ( !@cursor.eof?() )
+				break if ( !yield(@cursor.char) )
 				next self.next()
 			end
 		end
 
+		# Buffers until one of the provided characters is met
 		def until(*chars : Char) : Nil
-			return self.until() { |cursor| @cursor.char?(*chars) }
+			while ( !@cursor.eof?() )
+				break if ( @cursor.char?(*chars) )
+				next self.next()
+			end
 		end
 
-		def line() : Nil
-			return self.until('\n')
+		# Buffers upto, but not including, where the block yields `true`
+		def upto(&block : Char -> Bool) : Nil
+			while ( @cursor.has_more?() )
+				if ( yield(@cursor.peek()) )
+					self << @cursor.char
+					break
+				end
+				next self.next()
+			end
+		end
+
+		# Buffers upto, but not including, one of the provided characters
+		def upto(*chars : Char) : Nil
+			while ( @cursor.has_more?() )
+				if ( yield(@cursor.peek?(chars)) )
+					self << @cursor.char
+					break
+				end
+				next self.next()
+			end
 		end
 
 
 		# MARK: - Complex Entries
 
-		def symbol(is_key : Bool = false) : Nil
-			return self.until() { |cursor| next !cursor.eof? && !Test.symbol?(cursor, is_key) }
+		def symbol(is_key : Bool = false, limit : UInt32? = nil) : Nil
+			return self.while() { |char| next Test.symbol?(char, is_key) }
 		end
 
 		def escape_sequence() : Nil
@@ -305,6 +338,10 @@ class Config::Lexer
 			raise ParseException.new("Unexpected char #{char.inspect}", location)
 		end
 
+		private def limit_reached(char : Char = @cursor.char, location = @cursor.location) : Nil
+			raise ParseException.new("Limit reached #{char.inspect}", location)
+		end
+
 		private def raise(msg)
 			::raise(ParseException.new(msg, @cursor.location))
 		end
@@ -316,7 +353,7 @@ class Config::Lexer
 
 		# MARK: - Initalization
 
-		def initialize(@cursor : Cursor, @buffer : Buffer, @token : Token, @pool : StringPool, @macros :  Hash(String, Any))
+		def initialize(@cursor : Cursor, @buffer : Buffer, @token : Token, @pool : StringPool, @macros :  Macros)
 		end
 
 		protected def reset_token(key : Symbol, *, raw = nil, strip : Bool = false, pool : Bool = false) : Nil
@@ -351,11 +388,11 @@ class Config::Lexer
 		def string(expects_key : Bool = false) : Nil
 			@buffer.clear()
 
-			while ( char = @cursor.next )
-				case char
-					when '\0' then raise("Unterminated string")
-					when '\\' then @buffer.escape_sequence()
-					when '$'  then string_macro()
+			loop do
+				case char = @cursor.next?
+					when nil	then raise("Unterminated string #{char}")
+					when '\\'	then @buffer.escape_sequence()
+					when '$'	then string_macro()
 					when '"'
 						@cursor.next
 						break
@@ -373,20 +410,30 @@ class Config::Lexer
 		end
 
 		def string_macro()
-			name = String.build() { |string|
-				string << @cursor.char
-				while ( !@cursor.eof?() && (char = @cursor.peek?()) && Test.symbol?(char) )
-					string << char
+			name = Buffer.new(@cursor) { |buffer|
+				buffer.next()
+
+				if ( @cursor.char?('{') )
 					@cursor.next
+					buffer.while() { |char|
+						next true if Test.symbol?(char)
+						next false if char == '}'
+						unexpected_char()
+					}
+				else
+					buffer.upto() { |char|
+						next false if Test.symbol?(char)
+						next true
+					}
 				end
 			}
 
-			string = @macros[name]?
-			raise("missing macro #{name.inspect}") if ( !string )
-			string = string.as_s?()
+			macro_value = @macros[name]?
+			raise("missing macro #{name.inspect}") if ( !macro_value )
+			string = macro_value.as_s?()
 			raise("expected macro, #{name.inspect}, to be a string") if ( !string )
-			@buffer << string
 
+			@buffer << string
 		end
 
 		def comment(expects_key : Bool = false) : Nil
