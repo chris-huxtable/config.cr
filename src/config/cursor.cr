@@ -32,7 +32,6 @@ abstract class Config::Cursor
 		super()
 		@location	= Location.new()
 		#@lookahead	= Queue(Char).new()
-		@buffer		= IO::Memory.new()
 		@newline	= false
 	end
 
@@ -42,14 +41,30 @@ abstract class Config::Cursor
 	@lookahead : Char? = nil
 
 	getter location : Location
-	getter buffer : IO::Memory
 
-	abstract def char() : Char
+	abstract def char?() : Char?
+
+	def char() : Char
+		return char?() || '\0'
+	end
 
 	def char?(*chars : Char) : Bool
 		cur = char()
 		chars.each() { |a_char| return true if ( cur == a_char ) }
 		return false
+	end
+
+	def eof?() : Bool
+		return ( char?() == nil || char?() == Char::ZERO )
+	end
+
+
+	# Movement
+
+	abstract def peek?() : Char?
+
+	def peek() : Char
+		return peek?() || '\0'
 	end
 
 	def peek?(*chars : Char) : Bool
@@ -58,24 +73,11 @@ abstract class Config::Cursor
 		return false
 	end
 
-	def eof?() : Bool
-		return char?('\0')
-	end
 
+	abstract def next?() : Char?
 
-	# Movement
-
-	abstract def peek() : Char
-	abstract def next() : Char
-
-	def buffer_and_next() : Char
-		@buffer << char()
-		return self.next()
-	end
-
-	def buffer_first() : Char
-		@buffer.clear()
-		return buffer_and_next()
+	def next() : Char
+		return next?() || '\0'
 	end
 
 
@@ -102,28 +104,30 @@ class Config::IOCursor < Config::Cursor
 
 	def initialize(@io : IO)
 		super()
-		@char = (@io.read_char() || '\0')
+		@char = @io.read_char()
 	end
 
 
 	# Properties
 
-	def char() : Char
+	@char : Char?
+	def char?() : Char?
 		return @char
 	end
 
 
 	# Movement
 
-	def peek() : Char
+	def peek?() : Char?
 		lookahead = @lookahead
 		return lookahead if ( lookahead )
-		peek = (@io.read_char() || '\0')
+		peek = @io.read_char()
 		@lookahead = peek
 		return peek
 	end
 
-	def next() : Char
+
+	def next?() : Char?
 		if ( @newline )
 			@location.newline()
 			@newline = false
@@ -135,7 +139,7 @@ class Config::IOCursor < Config::Cursor
 			@char = peek
 			@lookahead = nil
 		else
-			@char = (@io.read_char() || '\0')
+			@char = @io.read_char()
 		end
 
 		@newline = true if ( char?('\n') )
@@ -152,24 +156,26 @@ class Config::StringCursor < Config::Cursor
 	def initialize(string : String)
 		super()
 		@reader = Char::Reader.new(string)
+		@char = @reader.current_char
 	end
 
 
 	# Properties
 
-	def char() : Char
-		return @reader.current_char
+	@char : Char?
+	def char?() : Char?
+		return @char
 	end
 
 
 	# Movement
 
-	def peek() : Char
-		return '\0' if ( !@reader.has_next? )
+	def peek?() : Char?
+		return nil if ( !@reader.has_next? )
 		return @reader.peek_next_char()
 	end
 
-	def next() : Char
+	def next?() : Char?
 		if ( @newline )
 			@location.newline()
 			@newline = false
@@ -177,11 +183,14 @@ class Config::StringCursor < Config::Cursor
 
 		@location.column += 1
 
-		return '\0' if ( !@reader.has_next? )
+		if ( !@reader.has_next? )
+			char = nil
+			return nil
+		end
 
-		char = @reader.next_char()
+		@char = @reader.next_char()
 		@newline = true if ( char?('\n') )
-		return char
+		return @char
 	end
 
 end

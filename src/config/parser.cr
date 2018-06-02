@@ -24,7 +24,7 @@ class Config::Parser
 	# Initialization
 
 	def initialize(serial : String|IO)
-		@lexer = Config::Lexer.new(serial)
+		@lexer = Config::Lexer.new(serial, @macros)
 		@nest = 0
 	end
 
@@ -86,7 +86,6 @@ class Config::Parser
 			array << parse_value()
 			expect_type(:",", :"\n", :"]")
 		}
-
 		next_token()
 		return array
 	end
@@ -151,7 +150,6 @@ class Config::Parser
 		while ( !token.type?(close) )
 			skip_seporators()
 			break if ( token.type?(close) )
-
 			yield()
 		end
 		@nest -= 1
@@ -167,7 +165,7 @@ class Config::Parser
 
 	private def expected_type(*expected : Symbol) : Nil
 		expected = expected.to_a.map(){ |e| "'#{Token.type_string(e)}'" }.join(", ")
-		parse_exception("expected token: #{expected}, was: '#{token().type_string}'")
+		parse_exception("expected token: #{expected}, was: #{token().type_string.inspect} with string #{token.string_value.inspect}")
 	end
 
 	private def unexpected_type() : Nil
