@@ -106,7 +106,7 @@ class Config::Lexer
 	end
 
 	private def try_comment?(expects_key : Bool) : Bool
-		return false if ( !Test.comment_start?(@cursor) )
+		return false if ( !@cursor.char?('#') && !(@cursor.char?('/') && @cursor.peek?('/', '*')) )
 		@tokenize.comment(expects_key)
 		return true
 	end
@@ -184,14 +184,6 @@ class Config::Lexer
 		def self.symbol?(cursor : Cursor, is_key : Bool = false) : Bool
 			return symbol?(cursor.char, is_key)
 		end
-
-		# Tests if the character is valid at the start of a comment
-		def self.comment_start?(char : Char) : Bool
-			return true if ( char == '#' )
-			return true if ( char == '/' )
-			return false
-		end
-		cursor_char(comment_start?)
 
 	end
 

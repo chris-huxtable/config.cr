@@ -54,6 +54,8 @@ describe Config::Parser do
 		it_parses "foo: false",						{ "foo" => false }
 		it_parses "foo: null",						{ "foo" => nil }
 		it_parses "foo: this is multi word",		{ "foo" => "this is multi word" }
+		it_parses "foo: /this/is/a/rooted path/",	{ "foo" => "/this/is/a/rooted path/" }
+		it_parses "foo: \"#bar\"",					{ "foo" => "#bar" }
 		it_parses "foo: this is\nbar: multi line",	{ "foo" => "this is", "bar" => "multi line" }
 
 		link = "https://github.com/chris-huxtable/config.cr"
@@ -78,8 +80,6 @@ describe Config::Parser do
 
 		it_parses "foo \t\n: \t\nbar",				{ "foo" => "bar" }
 		it_parses "foo:\n{\nbar: 1\n}",				{ "foo" => {"bar" => 1} }
-
-		it_parses "foo \t\n: \"#bar\"",			{ "foo" => "#bar" }
 	end
 
 	describe "parses odd entries" do
