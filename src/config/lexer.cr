@@ -304,7 +304,7 @@ class Config::Lexer
 
 		def escape_sequence() : Nil
 			case ( char = @cursor.next() )
-				when '\\', '"', '/', '$', '#'	then @buffer << char
+				when '\\', '"', '/', '$'		then @buffer << char
 				when 'b'						then @buffer << '\b'
 				when 'f'						then @buffer << '\f'
 				when 'n'						then @buffer << '\n'
