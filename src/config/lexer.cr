@@ -304,14 +304,14 @@ class Config::Lexer
 
 		def escape_sequence() : Nil
 			case ( char = @cursor.next() )
-				when '\\', '"', '/', '$'	then @buffer << char
-				when 'b'					then @buffer << '\b'
-				when 'f'					then @buffer << '\f'
-				when 'n'					then @buffer << '\n'
-				when 'r'					then @buffer << '\r'
-				when 't'					then @buffer << '\t'
-				when 'u'					then @buffer << read_hex_number().chr
-				else						raise("Unknown escape char: #{char}")
+				when '\\', '"', '/', '$', '#'	then @buffer << char
+				when 'b'						then @buffer << '\b'
+				when 'f'						then @buffer << '\f'
+				when 'n'						then @buffer << '\n'
+				when 'r'						then @buffer << '\r'
+				when 't'						then @buffer << '\t'
+				when 'u'						then @buffer << read_hex_number().chr
+				else							raise("Unknown escape char: #{char}")
 			end
 		end
 

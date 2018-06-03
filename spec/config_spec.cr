@@ -78,6 +78,8 @@ describe Config::Parser do
 
 		it_parses "foo \t\n: \t\nbar",				{ "foo" => "bar" }
 		it_parses "foo:\n{\nbar: 1\n}",				{ "foo" => {"bar" => 1} }
+
+		it_parses "foo \t\n: \"\\#bar\"",			{ "foo" => "#bar" }
 	end
 
 	describe "parses odd entries" do
