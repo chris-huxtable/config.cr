@@ -12,38 +12,11 @@
 # ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-require "./config/*"
+shards:
+	shards update
+	shards prune
 
+clean:
+	shards prune
+	find . -name ".DS_Store" -depth -exec rm {} \;
 
-module Config
-
-	alias Type = Nil|Bool|Int64|Float64|String|Array(Type)|Hash(String, Type)
-
-
-	# Parsing
-
-	def self.parse(input : String|IO) : Any
-		return Any.new(Parser.new(input).parse())
-	end
-
-	def self.file(path : String) : Any
-		File.open(path, "r") { |fd| return parse(fd) }
-	end
-
-
-	# Errors and Exceptions
-
-	class Error < Exception
-	end
-
-	class ParseException < Error
-
-		getter location : Location
-
-		def initialize(message, @location : Location)
-			super("#{message} at #{@location.to_s}")
-		end
-
-	end
-
-end

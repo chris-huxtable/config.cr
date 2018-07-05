@@ -12,38 +12,30 @@
 # ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-require "./config/*"
 
+class Config::Macros
 
-module Config
-
-	alias Type = Nil|Bool|Int64|Float64|String|Array(Type)|Hash(String, Type)
-
-
-	# Parsing
-
-	def self.parse(input : String|IO) : Any
-		return Any.new(Parser.new(input).parse())
-	end
-
-	def self.file(path : String) : Any
-		File.open(path, "r") { |fd| return parse(fd) }
+	def initialize()
+		@macros = Hash(String, Any).new()
+		@max_key_size = 0_u32
 	end
 
 
-	# Errors and Exceptions
+	# MARK: - Properties
 
-	class Error < Exception
+	def [](key : String) : Any
+		return @macros[key]
 	end
 
-	class ParseException < Error
-
-		getter location : Location
-
-		def initialize(message, @location : Location)
-			super("#{message} at #{@location.to_s}")
-		end
-
+	def []?(key : String) : Any?
+		return @macros[key]?
 	end
+
+	def []=(key : String, value : Any) : Nil
+		@max_key_size = key.size.to_u32 if ( key.size > @max_key_size )
+		@macros[key] = value
+	end
+
+	getter max_key_size : UInt32
 
 end

@@ -15,25 +15,30 @@
 require "./spec_helper"
 
 
-private def it_parses(string, expected, file = __FILE__, line = __LINE__)
-	it "parses #{string}", file, line do
+private macro it_parses(string, expected)
+	it "parses #{{{ string }}}" do
+		string = {{ string }}
+		expected = {{ expected }}
 		Config.parse(string).raw.should eq(expected)
+		Config.parse(IO::Memory.new(string)).raw.should eq(expected)
 	end
 end
 
-private def it_raises_on_parse(string, file = __FILE__, line = __LINE__)
-	it "raises on parse #{string}", file, line do
-		expect_raises Config::ParseException do
-			Config.parse(string)
-		end
+private macro it_raises_on_parse(string)
+	it "raises on parse #{{{ string }}}" do
+		string = {{ string }}
+		expect_raises(Config::ParseException) { Config.parse(string) }
+		expect_raises(Config::ParseException) { Config.parse(IO::Memory.new(string)) }
 	end
 end
+
 
 describe Config::Parser do
 
-	it "parses basics" do
+	describe "parses basics" do
 		it_parses "foo: 1",							{ "foo" => 1 }
 		it_parses "foo: 2.5",						{ "foo" => 2.5 }
+		it_parses "foo: 123.45",					{ "foo" => 123.45 }
 
 		it_parses "foo: 0xdeadbeef",				{ "foo" => 0xdeadbeef }
 		it_parses "foo: 0Xdeadbeef",				{ "foo" => 0xdeadbeef }
@@ -49,6 +54,8 @@ describe Config::Parser do
 		it_parses "foo: false",						{ "foo" => false }
 		it_parses "foo: null",						{ "foo" => nil }
 		it_parses "foo: this is multi word",		{ "foo" => "this is multi word" }
+		it_parses "foo: /this/is/a/rooted path/",	{ "foo" => "/this/is/a/rooted path/" }
+		it_parses "foo: \"#bar\"",					{ "foo" => "#bar" }
 		it_parses "foo: this is\nbar: multi line",	{ "foo" => "this is", "bar" => "multi line" }
 
 		link = "https://github.com/chris-huxtable/config.cr"
@@ -75,7 +82,7 @@ describe Config::Parser do
 		it_parses "foo:\n{\nbar: 1\n}",				{ "foo" => {"bar" => 1} }
 	end
 
-	it "parses odd entries" do
+	describe "parses odd entries" do
 		it_parses "foo: {\"ba\\nr\": 1}",			{ "foo" => {"ba\nr" => 1} }
 
 		it_parses "foo: [{bar: 1}]",				{ "foo" => [{"bar" => 1}] }
@@ -92,7 +99,7 @@ describe Config::Parser do
 		it_parses "foo: 1\u{0}",					{ "foo" => 1 }
 	end
 
-	it "parses non-ascii" do
+	describe "parses non-ascii" do
 		it_parses "foo: 日",						{ "foo" => "日" }
 		it_parses "foo: \"日\"",					{ "foo" => "日" }
 		it_parses "foo: [日]",						{ "foo" => ["日"] }
@@ -105,6 +112,7 @@ describe Config::Parser do
 		it_parses "foo: [\"💩\"]",					{ "foo" => ["💩"] }
 		it_parses "💩: 💩",						{ "💩" => "💩" }
 
+		it_parses "foo: \"\\u201celwor\"",			{ "foo" => "\u201celwor" }
 		it_parses "foo: \"\\u201cel\nwor\"",		{ "foo" => "\u201cel\nwor" }
 		it_parses "foo: \"\\u201cel\twor\"",		{ "foo" => "\u201cel\twor" }
 	end
@@ -141,26 +149,26 @@ describe Config::Parser do
 		it_raises_on_parse "foo: [2.]"
 		it_raises_on_parse "foo: \"unterminated string"
 		it_raises_on_parse "foo: "
-
-
 	end
 
 	it "allows macros" do
-		it_parses "$macro = test, foo: $macro",		{ "foo" => "test" }
-		it_parses "$macro = 0, foo: $macro",		{ "foo" => 0 }
-		it_parses "$macro = 1.25, foo: $macro",		{ "foo" => 1.25 }
-		it_parses "$macro = 0xbeef, foo: $macro",	{ "foo" => 0xbeef }
-		it_parses "$macro = 0o7654, foo: $macro",	{ "foo" => 0o7654 }
-		it_parses "$macro = 0b1010, foo: $macro",	{ "foo" => 0b1010 }
-		it_parses "$macro = true, foo: $macro",		{ "foo" => true }
-		it_parses "$macro = false, foo: $macro",	{ "foo" => false }
-		it_parses "$macro = null, foo: $macro",		{ "foo" => nil }
-		it_parses "$macro = [0], foo: $macro",		{ "foo" => [0] }
-		it_parses "$macro = [0,1,2], foo: $macro",	{ "foo" => [0,1,2] }
-		it_parses "$macro = {bar: 0}, foo: $macro",	{ "foo" => {"bar" => 0} }
+		it_parses "$macro = test, foo: $macro",				{ "foo" => "test" }
+		it_parses "$macro = 0, foo: $macro",				{ "foo" => 0 }
+		it_parses "$macro = 1.25, foo: $macro",				{ "foo" => 1.25 }
+		it_parses "$macro = 0xbeef, foo: $macro",			{ "foo" => 0xbeef }
+		it_parses "$macro = 0o7654, foo: $macro",			{ "foo" => 0o7654 }
+		it_parses "$macro = 0b1010, foo: $macro",			{ "foo" => 0b1010 }
+		it_parses "$macro = true, foo: $macro",				{ "foo" => true }
+		it_parses "$macro = false, foo: $macro",			{ "foo" => false }
+		it_parses "$macro = null, foo: $macro",				{ "foo" => nil }
+		it_parses "$macro = [0], foo: $macro",				{ "foo" => [0] }
+		it_parses "$macro = [0,1,2], foo: $macro",			{ "foo" => [0,1,2] }
+		it_parses "$macro = {bar: 0}, foo: $macro",			{ "foo" => {"bar" => 0} }
+		it_parses "$macro = world, foo: \"hello $macro\"",	{ "foo" => "hello world" }
+		it_parses "$macro = hel, foo: \"${macro}lo world\"",	{ "foo" => "hello world" }
 
 		it_parses "$macro0 = test, $macro1 = $macro0, foo: $macro1", { "foo" => "test" }
-		it_parses "$macro = test, $macro: foo",		{ "test" => "foo" }
+		it_parses "$macro = test, $macro: foo",				{ "test" => "foo" }
 
 		it_raises_on_parse "$macro = $macro, foo: $macro"
 	end

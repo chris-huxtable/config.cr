@@ -1,9 +1,12 @@
 name: config
-version: 0.1.2
+version: 0.1.4
+
+crystal: 0.24.2
 
 authors:
   - Chris Huxtable <chris@huxtable.ca>
 
-crystal: 0.24.2
+description: |
+  Easy to use configuration format parser
 
 license: ISC

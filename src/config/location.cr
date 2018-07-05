@@ -42,4 +42,5 @@ struct Config::Location
 		io << @line.to_s << ":"
 		io << @column.to_s << '(' << @size.to_s << ')'
 	end
+
 end
