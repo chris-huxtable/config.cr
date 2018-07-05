@@ -1,5 +1,6 @@
 name: config
 version: 0.1.4
+license: ISC
 
 crystal: 0.24.2
 
@@ -8,5 +9,3 @@ authors:
 
 description: |
   Easy to use configuration format parser
-
-license: ISC
