@@ -3,7 +3,7 @@
 [![GitHub release](https://img.shields.io/github/release/chris-huxtable/config.cr.svg)](https://github.com/chris-huxtable/config.cr/releases)
 [![Build Status](https://travis-ci.org/chris-huxtable/config.cr.svg?branch=master)](https://travis-ci.org/chris-huxtable/config.cr)
 
-`config.cr` is a parser for a configuration format designed to be more effective then JSON, YAML, INI, HJSON. It inherits aspects from  'OpenBSD style' configs like macros.
+`config.cr` is a parser for a configuration format designed to be more effective then JSON, YAML, INI, and HJSON. It alos inherits aspects from  'OpenBSD style' configs like macros.
 
 ```
 # TL;DR
