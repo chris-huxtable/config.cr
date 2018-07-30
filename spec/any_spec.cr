@@ -17,109 +17,330 @@ require "./spec_helper"
 
 describe Config::Any do
 
-	describe "casts" do
+	describe "determines if entry is" do
 
-		it "gets nil" do
-			Config.parse("foo: null").as_nil("foo").should be_nil
+		it "nil" do
+			Config.parse("foo: nil").is_nil?("foo").should be_true
+			Config.parse("foo: null").is_nil?("foo").should be_true
+
+			Config.parse("foo: { bar: nil }").is_nil?("foo", "bar").should be_true
+			Config.parse("foo: { bar: null }").is_nil?("foo", "bar").should be_true
+
+			Config.parse("foo: string").is_nil?("foo").should be_false
+			Config.parse("foo: { bar: string }").is_nil?("foo", "bar").should be_false
 		end
 
-		it "gets bool" do
+	end
+
+	describe "entry casts to" do
+
+		it "bool" do
+			# Base
 			Config.parse("foo: true").as_bool("foo").should be_true
 			Config.parse("foo: false").as_bool("foo").should be_false
 			Config.parse("foo: true").as_bool?("foo").should be_true
 			Config.parse("foo: false").as_bool?("foo").should be_false
+
+			# Nested
+			Config.parse("foo: { bar: true }").as_bool("foo", "bar").should be_true
+			Config.parse("foo: { bar: false }").as_bool("foo", "bar").should be_false
+			Config.parse("foo: { bar: true }").as_bool?("foo", "bar").should be_true
+			Config.parse("foo: { bar: false }").as_bool?("foo", "bar").should be_false
+
+			# Not Found
 			Config.parse("foo: 2").as_bool?("foo").should be_nil
+			Config.parse("foo: { bar: 2 }").as_bool?("foo", "bar").should be_nil
 		end
 
-		it "gets int" do
+		it "int" do
+			# Base
 			Config.parse("foo: 123").as_i("foo").should eq(123)
-			Config.parse("foo: 123456789123456").as_i64("foo").should eq(123456789123456)
 			Config.parse("foo: 123").as_i?("foo").should eq(123)
+			Config.parse("foo: 123456789123456").as_i64("foo").should eq(123456789123456)
 			Config.parse("foo: 123456789123456").as_i64?("foo").should eq(123456789123456)
+
+			# Nested
+			Config.parse("foo: { bar: 123 }").as_i("foo", "bar").should eq(123)
+			Config.parse("foo: { bar: 123 }").as_i?("foo", "bar").should eq(123)
+			Config.parse("foo: { bar: 123456789123456 }").as_i64("foo", "bar").should eq(123456789123456)
+			Config.parse("foo: { bar: 123456789123456 }").as_i64?("foo", "bar").should eq(123456789123456)
+
+			# Not Found
 			Config.parse("foo: true").as_i?("foo").should be_nil
 			Config.parse("foo: true").as_i64?("foo").should be_nil
+			Config.parse("foo: { bar: true }").as_i?("foo", "bar").should be_nil
+			Config.parse("foo: { bar: true }").as_i64?("foo", "bar").should be_nil
 		end
 
-		it "gets float" do
+		it "float" do
+			# Base
 			Config.parse("foo: 123.45").as_f("foo").should eq(123.45)
-			Config.parse("foo: 123.45").as_f32("foo").should eq(123.45_f32)
 			Config.parse("foo: 123.45").as_f?("foo").should eq(123.45)
+			Config.parse("foo: 123.45").as_f32("foo").should eq(123.45_f32)
 			Config.parse("foo: 123.45").as_f32?("foo").should eq(123.45_f32)
+
+			# Nested
+			Config.parse("foo: { bar: 123.45 }").as_f("foo", "bar").should eq(123.45)
+			Config.parse("foo: { bar: 123.45 }").as_f?("foo", "bar").should eq(123.45)
+			Config.parse("foo: { bar: 123.45 }").as_f32("foo", "bar").should eq(123.45_f32)
+			Config.parse("foo: { bar: 123.45 }").as_f32?("foo", "bar").should eq(123.45_f32)
+
+			# Not Found
 			Config.parse("foo: true").as_f?("foo").should be_nil
 			Config.parse("foo: true").as_f32?("foo").should be_nil
+			Config.parse("foo: { bar: true }").as_f?("foo", "bar").should be_nil
+			Config.parse("foo: { bar: true }").as_f32?("foo", "bar").should be_nil
 		end
 
-		it "gets string" do
-			Config.parse("foo: \"hello\"").as_s("foo").should eq("hello")
-			Config.parse("foo: \"hello\"").as_s?("foo").should eq("hello")
+		it "string" do
+			expected = "hello"
+
+			# Base
+			Config.parse("foo: \"hello\"").as_s("foo").should eq(expected)
+			Config.parse("foo: hello").as_s("foo").should eq(expected)
+			Config.parse("foo: \"hello\"").as_s?("foo").should eq(expected)
+			Config.parse("foo: hello").as_s?("foo").should eq(expected)
+
+			# Nested
+			Config.parse("foo: { bar: \"hello\" }").as_s("foo", "bar").should eq(expected)
+			Config.parse("foo: { bar: hello }").as_s("foo", "bar").should eq(expected)
+			Config.parse("foo: { bar: \"hello\" }").as_s?("foo", "bar").should eq(expected)
+			Config.parse("foo: { bar: hello }").as_s?("foo", "bar").should eq(expected)
+
+			# Not Found
 			Config.parse("foo: true").as_s?("foo").should be_nil
+			Config.parse("foo: { bar: true }").as_s?("foo", "bar").should be_nil
+			expect_raises(Exception) { Config.parse("foo: true").as_s("foo") }
+			expect_raises(Exception) { Config.parse("foo: { bar: true }").as_s("foo", "bar") }
 		end
 
-		it "gets array" do
-			Config.parse("foo: [1, 2, 3]").as_a("foo").should eq([1, 2, 3])
-			Config.parse("foo: [1, 2, 3]").as_a?("foo").should eq([1, 2, 3])
+		it "array" do
+			expected = [1, 2, 3]
+
+			# Base
+			Config.parse("foo: [1, 2, 3]").as_a("foo").should eq(expected)
+			Config.parse("foo: [1, 2, 3]").as_a?("foo").should eq(expected)
+
+			# Nested
+			Config.parse("foo: { bar: [1, 2, 3] }").as_a("foo", "bar").should eq(expected)
+			Config.parse("foo: { bar: [1, 2, 3] }").as_a?("foo", "bar").should eq(expected)
+
+			# Not Found
 			Config.parse("foo: true").as_a?("foo").should be_nil
+			expect_raises(Exception) { Config.parse("foo: true").as_a("foo") }
 		end
 
-		it "gets hash" do
-			Config.parse("foo: {foo: bar}").as_h("foo").should eq({"foo" => Config::Any.new("bar")})
-			Config.parse("foo: {foo: bar}").as_h?("foo").should eq({"foo" => Config::Any.new("bar")})
+		it "hash" do
+			expected = {"this" => Config::Any.new("test")}
+
+			# Base
+			Config.parse("foo: {this: test}").as_h("foo").should eq(expected)
+			Config.parse("foo: {this: test}").as_h?("foo").should eq(expected)
+
+			# Nested
+			Config.parse("foo: {bar: {this: test}}").as_h("foo", "bar").should eq(expected)
+			Config.parse("foo: {bar: {this: test}}").as_h?("foo", "bar").should eq(expected)
+
+			# Not Found
 			Config.parse("foo: true").as_h?("foo").should be_nil
+			expect_raises(Exception) { Config.parse("foo: true").as_h("foo") }
 		end
 
-		it "gets array of type" do
-			Config.parse("foo: [this, is, a, test]").as_a("foo", String).should eq(["this", "is", "a", "test"])
-			Config.parse("foo: [this, is, a, test]").as_a?("foo", String).should eq(["this", "is", "a", "test"])
+		it "array of type" do
+			expected = ["this", "is", "a", "test"]
 
-			expect_raises Exception do
-				Config.parse("foo: [0, 1, 2, 3]").as_a("foo", String)
+			# Base
+			Config.parse("foo: [this, is, a, test]").as_a("foo", each_as: String).should eq(expected)
+			Config.parse("foo: [this, is, a, test]").as_a?("foo", each_as: String).should eq(expected)
+
+			# Nested
+			Config.parse("foo: {bar: [this, is, a, test]}").as_a("foo", "bar", each_as: String).should eq(expected)
+			Config.parse("foo: {bar: [this, is, a, test]}").as_a?("foo", "bar", each_as: String).should eq(expected)
+
+			# Mixed and Bad Types
+			Config.parse("foo: [0, 1, 2, 3]").as_a?("foo", each_as: String).should eq(Array(String).new())
+			Config.parse("foo: [this, test, 2, 3]").as_a?("foo", each_as: String).should eq(["this", "test"])
+
+			Config.parse("foo: [0, 1, 2, 3]").as_a?("foo", each_as: String, skip: false).should be_nil
+			Config.parse("foo: [this, test, 2, 3]").as_a?("foo", each_as: String, skip: false).should be_nil
+
+			expect_raises(Exception) { Config.parse("foo: [0, 1, 2, 3]").as_a("foo", each_as: String) }
+			expect_raises(Exception) { Config.parse("foo: [this, test, 2, 3]").as_a("foo", each_as: String) }
+		end
+
+		it "hash of type" do
+			expected = {"this" => "is", "a" => "test"}
+
+			# Base
+			Config.parse("foo: {this: is, a: test}").as_h("foo", each_as: String).should eq(expected)
+			Config.parse("foo: {this: is, a: test}").as_h?("foo", each_as: String).should eq(expected)
+
+			# Nested
+			Config.parse("foo: {bar: {this: is, a: test}}").as_h("foo", "bar", each_as: String).should eq(expected)
+			Config.parse("foo: {bar: {this: is, a: test}}").as_h?("foo", "bar", each_as: String).should eq(expected)
+
+			# Mixed and Bad Types
+			Config.parse("foo: {this: 1, a: 3}").as_h?("foo", each_as: String).should eq(Hash(String, String).new())
+			Config.parse("foo: {this: test, a: 3}").as_h?("foo", each_as: String).should eq({"this" => "test"})
+
+			Config.parse("foo: {this: 1, a: 3}").as_h?("foo", each_as: String, skip: false).should be_nil
+			Config.parse("foo: {this: test, a: 3}").as_h?("foo", each_as: String, skip: false).should be_nil
+
+			expect_raises(Exception) { Config.parse("foo: {this: 1, a: 3}").as_h("foo", each_as: String) }
+			expect_raises(Exception) { Config.parse("foo: {this: test, a: 3}").as_h("foo", each_as: String) }
+		end
+
+		it "array yields" do
+			expected = ["this", "is", "a", "test"]
+
+			# Base
+			array = Array(String).new()
+			Config.parse("foo: [this, is, a, test]").as_a("foo", each_as: String) { |elm| array << elm }
+			array.should eq(expected)
+
+			array = Array(String).new()
+			Config.parse("foo: [this, is, a, test]").as_a?("foo", each_as: String) { |elm| array << elm }
+			array.should eq(expected)
+
+			# Nested
+			array = Array(String).new()
+			Config.parse("foo: {bar: [this, is, a, test]}").as_a("foo", "bar", each_as: String) { |elm| array << elm }
+			array.should eq(expected)
+
+			array = Array(String).new()
+			Config.parse("foo: {bar: [this, is, a, test]}").as_a?("foo", "bar", each_as: String) { |elm| array << elm }
+			array.should eq(expected)
+
+			# Mixed and Bad Types
+			array = Array(String).new()
+			Config.parse("foo: [0, 1, 2, 3]").as_a?("foo", each_as: String) { |elm| array << elm }
+			array.should eq(Array(String).new())
+
+			array = Array(String).new()
+			Config.parse("foo: [this, test, 2, 3]").as_a?("foo", each_as: String) { |elm| array << elm }
+			array.should eq(["this", "test"])
+
+			expect_raises(Exception) do
+				array = Array(String).new()
+				Config.parse("foo: [0, 1, 2, 3]").as_a("foo", each_as: String) { |elm| array << elm }
 			end
-			Config.parse("foo: [0, 1, 2, 3]").as_a?("foo", String).should be_nil
 
-		end
-
-		it "gets hash of type" do
-			Config.parse("foo: {this: is, a: test}").as_h("foo", String).should eq({"this" => "is", "a" => "test"})
-			Config.parse("foo: {this: is, a: test}").as_h?("foo", String).should eq({"this" => "is", "a" => "test"})
-
-			expect_raises Exception do
-				Config.parse("foo: {this: 1, a: 3}").as_h("foo", String)
+			expect_raises(Exception) do
+				array = Array(String).new()
+				Config.parse("foo: [this, test, 2, 3]").as_a("foo", each_as: String) { |elm| array << elm }
 			end
-			Config.parse("foo: {this: 1, a: 3}").as_h?("foo", String).should be_nil
+		end
+
+		it "hash yield" do
+			expected = {"this" => "is", "a" => "test"}
+
+			# Base
+			hash = Hash(String, String).new()
+			Config.parse("foo: {this: is, a: test}").as_h("foo", each_as: String) { |key, value| hash[key] = value }
+			hash.should eq(expected)
+
+			hash = Hash(String, String).new()
+			Config.parse("foo: {this: is, a: test}").as_h?("foo", each_as: String) { |key, value| hash[key] = value }
+			hash.should eq(expected)
+
+			# Nested
+			hash = Hash(String, String).new()
+			Config.parse("foo: {bar: {this: is, a: test}}").as_h("foo", "bar", each_as: String) { |key, value| hash[key] = value }
+			hash.should eq(expected)
+
+			hash = Hash(String, String).new()
+			Config.parse("foo: {bar: {this: is, a: test}}").as_h?("foo", "bar", each_as: String) { |key, value| hash[key] = value }
+			hash.should eq(expected)
+
+			# Mixed and Bad Types
+			hash = Hash(String, String).new()
+			Config.parse("foo: {this: 1, a: 3}").as_h?("foo", each_as: String) { |key, value| hash[key] = value }
+			hash.should eq(Hash(String, String).new())
+
+			hash = Hash(String, String).new()
+			Config.parse("foo: {this: test, a: 3}").as_h?("foo", each_as: String) { |key, value| hash[key] = value }
+			hash.should eq({"this" => "test"})
+
+			expect_raises(Exception) do
+				array = Hash(String, String).new()
+				Config.parse("foo: {this: 1, a: 3}").as_h("foo", each_as: String) { |key, value| hash[key] = value }
+			end
+
+			expect_raises(Exception) do
+				array = Hash(String, String).new()
+				Config.parse("foo: {this: test, a: 3}").as_h("foo", each_as: String) { |key, value| hash[key] = value }
+			end
 		end
 	end
 
-	describe "#size" do
-		it "of array" do
-			Config.parse("foo: [1, 2, 3]").as_a("foo").size.should eq(3)
+	describe "#size of" do
+		it "array" do
+			Config.parse("foo: [1, 2, 3]")["foo"].size.should eq(3)
+			Config.parse("foo: [1, 2, 3]")["foo"].size?.should eq(3)
 		end
 
-		it "of hash" do
-			Config.parse("foo: {foo: bar}").as_h("foo").size.should eq(1)
-		end
-	end
-
-	describe "#[]" do
-		it "of array" do
-			Config.parse("foo: [1, 2, 3]").as_a("foo")[1].raw.should eq(2)
+		it "hash" do
+			Config.parse("foo: {foo: bar, bar: foo}")["foo"].size.should eq(2)
+			Config.parse("foo: {foo: bar, bar: foo}")["foo"].size?.should eq(2)
 		end
 
-		it "of hash" do
-			Config.parse("foo: {foo: bar}").as_h("foo")["foo"].raw.should eq("bar")
+		it "string" do
+			Config.parse("foo: \"bar\"")["foo"].size.should eq(3)
+			Config.parse("foo: \"bar\"")["foo"].size?.should eq(3)
 		end
 	end
 
-	describe "#[]?" do
-		it "of array" do
-			Config.parse("foo: [1, 2, 3]").as_a("foo")[1]?.not_nil!.raw.should eq(2)
-			Config.parse("foo: [1, 2, 3]").as_a("foo")[3]?.should be_nil
-			Config.parse("foo: [true, false]").as_a("foo")[1]?.should eq false
+	describe "#[] of" do
+		it "array" do
+			Config.parse("foo: [1, 2, 3]")["foo"][1].raw.should eq(2)
 		end
 
-		it "of hash" do
-			Config.parse("foo: {foo: bar}").as_h("foo")["foo"]?.not_nil!.raw.should eq("bar")
-			Config.parse("foo: {foo: bar}").as_h("foo")["fox"]?.should be_nil
-			Config.parse("foo: {foo: false}").as_h("foo")["foo"]?.should eq false
+		it "hash" do
+			Config.parse("foo: {bar: foo}")["foo"]["bar"].raw.should eq("foo")
+		end
+	end
+
+	describe "#[]? of" do
+		it "array" do
+			Config.parse("foo: [1, 2, 3]")["foo"][1]?.not_nil!.raw.should eq(2)
+			Config.parse("foo: [1, 2, 3]")["foo"][3]?.should be_nil
+			Config.parse("foo: [true, false]")["foo"][1]?.should eq false
+		end
+
+		it "hash" do
+			Config.parse("foo: {foo: bar}")["foo"]["foo"]?.not_nil!.raw.should eq("bar")
+			Config.parse("foo: {foo: bar}")["foo"]["fox"]?.should be_nil
+			Config.parse("foo: {foo: false}")["foo"]["foo"]?.should eq false
+		end
+	end
+
+	describe "#dig?" do
+		it "is not nil" do
+			Config.parse("foo: { bar: string }").dig?("foo", "bar").should_not be_nil
+		end
+
+		it "is nil" do
+			Config.parse("foo: { }").dig?("foo", "bar").should be_nil
+		end
+
+		describe "with hash" do
+			Config.parse("foo: { bar: string }").dig?("foo", "bar").not_nil!.raw.should eq("string")
+			Config.parse("foo: { bar: string }").dig?("foo", "bad").should be_nil
+		end
+
+		describe "with array" do
+			Config.parse("foo: [1, 2, 3]").dig?("foo", 1).not_nil!.raw.should eq(2)
+			Config.parse("foo: [1, 2, 3]").dig?("foo", 3).should be_nil
+		end
+
+		describe "with hash of array" do
+			Config.parse("foo: { bar: [1, 2, 3] }").dig?("foo", "bar", 1).not_nil!.raw.should eq(2)
+			Config.parse("foo: { bar: [1, 2, 3] }").dig?("foo", "bar", 3).should be_nil
+		end
+
+		describe "with array of hash" do
+			Config.parse("foo: [ 1, { bar: string }, 3]").dig?("foo", 1, "bar").not_nil!.raw.should eq("string")
+			Config.parse("foo: [ 1, { bar: string }, 3]").dig?("foo", 3, "bar").should be_nil
 		end
 	end
 
