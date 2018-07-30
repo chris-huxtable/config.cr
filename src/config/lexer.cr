@@ -27,7 +27,7 @@ class Config::Lexer
 		@buffer			= Buffer.new(@cursor)
 		@tokenize		= Tokenizer.new(@cursor, @buffer, @token, @string_pool, macros)
 
-		@reserved		= {"true" => :true, "false" => :false, "null" => :null}
+		@reserved		= {"true" => :true, "false" => :false, "null" => :null, "nil" => :null}
 	end
 
 
