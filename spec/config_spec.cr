@@ -117,7 +117,7 @@ describe Config::Parser do
 		it_parses "foo: \"\\u201cel\twor\"",		{ "foo" => "\u201cel\twor" }
 	end
 
-	it "parses comments" do
+	describe "parses comments" do
 		empty_hash = Hash(String, Config::Any).new()
 
 		it_parses "",								empty_hash
@@ -132,13 +132,13 @@ describe Config::Parser do
 		it_parses "/* pure comment */ foo: 0",		{ "foo" => 0 }
 	end
 
-	it "parses mistakes" do
+	describe "parses mistakes" do
 		it_parses "foo: [1,]",						{ "foo" => [1] }
 		it_parses "foo: {\"bar\": 1,}",				{ "foo" => { "bar" => 1 } }
 		it_parses "foo: [1, true],",				{ "foo" => [1, true] }
 	end
 
-	it "fails parsing" do
+	describe "fails parsing" do
 		it_raises_on_parse "foo: {1}"
 		it_raises_on_parse "foo: {\"foo\"1}"
 		it_raises_on_parse "foo: \"{\"foo\":}"
@@ -151,7 +151,7 @@ describe Config::Parser do
 		it_raises_on_parse "foo: "
 	end
 
-	it "allows macros" do
+	describe "allows macros" do
 		it_parses "$macro = test, foo: $macro",				{ "foo" => "test" }
 		it_parses "$macro = 0, foo: $macro",				{ "foo" => 0 }
 		it_parses "$macro = 1.25, foo: $macro",				{ "foo" => 1.25 }

@@ -126,10 +126,18 @@ struct Config::Any
 	# Assumes the underlying value is an `Array` or `Hash` and yields each
 	# of the elements or key/values, always as `Config::Any`.
 	# Raises if the underlying value is not an `Array` or `Hash`.
-	def each()
+	def each(&block : Any, Any? -> _)
 		case ( object = @raw )
 			when Array then object.each { |elem| yield Any.new(elem), Any.new(nil) }
 			when Hash then object.each { |key, value| yield Any.new(key), Any.new(value) }
+			else raise "Expected Array or Hash for #each, not #{object.class}"
+		end
+	end
+
+	def each(&block : Any -> _)
+		case ( object = @raw )
+			when Array then object.each { |elem| yield Any.new(elem) }
+				#when Hash then object.each { |key, value| yield Any.new(key), Any.new(value) }
 			else raise "Expected Array or Hash for #each, not #{object.class}"
 		end
 	end
@@ -314,7 +322,7 @@ struct Config::Any
 	# Raises otherwise.
 	def as_h() : Hash(String, Any)
 		hash = @raw.as(Hash)
-		hash_new = Hash(String, Any).new(nil, hash.size)
+		hash_new = Hash(String, Any).new()
 		hash.each() { |k,v| hash_new[k] = Any.new(v) }
 		return hash_new
 	end
@@ -351,7 +359,7 @@ struct Config::Any
 	# cast to type `U`.
 	def as_h(*path : KeyTypes, each_as : U.class) : Hash(String, U) forall U
 		hash = dig(*path).raw.as(Hash)
-		hash_new = Hash(String, U).new(nil, hash.size)
+		hash_new = Hash(String, U).new()
 		hash.each() { |k,v| hash_new[k] = v.as(U) }
 		return hash_new
 	end
@@ -370,7 +378,7 @@ struct Config::Any
 		hash = hash.raw.as?(Hash)
 		return nil if ( hash.nil? )
 
-		hash_new = Hash(String, U).new(nil, hash.size)
+		hash_new = Hash(String, U).new()
 		hash.each() do |key, value|
 			value = value.as?(U)
 			if ( value.nil? )
