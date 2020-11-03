@@ -3,7 +3,7 @@
 [![GitHub release](https://img.shields.io/github/release/chris-huxtable/config.cr.svg)](https://github.com/chris-huxtable/config.cr/releases)
 [![Build Status](https://travis-ci.org/chris-huxtable/config.cr.svg?branch=master)](https://travis-ci.org/chris-huxtable/config.cr)
 
-`config.cr` is a parser for a configuration format designed to be more effective then JSON, YAML, INI, and HJSON. It alos inherits aspects from  'OpenBSD style' configs like macros.
+`config.cr` is a parser for a configuration format designed to be more effective than JSON, YAML, INI, and HJSON. It also inherits aspects from  'OpenBSD style' configs like macros.
 
 ```
 # TL;DR
@@ -40,12 +40,12 @@ require "config"
 ```
 
 You can parse a file with:
-```
+```crystal
 config = Config.file("/path/to/file.conf")
 ```
 
 You can access the entries via the `Config::Any` objects.
-```
+```crystal
 config = Config.parse("username: chris, link: https://github.com/chris-huxtable/config.cr")
 
 username = config.as_s("username")
@@ -70,14 +70,14 @@ rate: 1000
 
 
 ### Strings:
-Unlike JSON, strings can be specified without quotes so long as it doesn't contain special characters like `:`, `=`, `{`, `}`, `[`, `]`, or `,`. Though, `:`, `=` are allowed if they are not a key.
+Unlike JSON, strings can be specified without quotes as long as it doesn't contain special characters like `:`, `=`, `{`, `}`, `[`, `]`, or `,`. Though, `:`, `=` are allowed if they are not a key.
 ```
 rate: This is a string.
 ```
 
 
 ### Separators:
-Unlike JSON, entries can be separated with commas, or newlines.
+Unlike JSON, entries can be separated with commas or newlines.
 ```
 first: 1
 second: 2, third: 3
@@ -129,7 +129,7 @@ Note: Macro's cannot yet be inserted into strings.
 
 
 ### Fault Tolerance:
-Recovers from easy to make  mistakes. Like useless comma's.
+Recovers from easy to make  mistakes. Like useless commas.
 ```
 first: 1
 second: 2,
