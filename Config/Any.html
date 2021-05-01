@@ -1,0 +1,2160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.36.1">
+<meta name="crystal_docs.project_version" content="HEAD">
+<meta name="crystal_docs.project_name" content="config">
+
+
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="config">
+  <title>Config::Any - config HEAD</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="../index.html">
+          config
+        </a>
+      </h1>
+
+      <span class="project-version">
+        HEAD
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent open current" data-id="config/Config" data-name="config">
+      <a href="../Config.html">Config</a>
+      
+        <ul>
+  
+  <li class="parent open current" data-id="config/Config/Any" data-name="config::any">
+      <a href="../Config/Any.html">Any</a>
+      
+        <ul>
+  
+  <li class=" " data-id="config/Config/Any/KeyTypes" data-name="config::any::keytypes">
+      <a href="../Config/Any/KeyTypes.html">KeyTypes</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/Cursor" data-name="config::cursor">
+      <a href="../Config/Cursor.html">Cursor</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/Error" data-name="config::error">
+      <a href="../Config/Error.html">Error</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/IOCursor" data-name="config::iocursor">
+      <a href="../Config/IOCursor.html">IOCursor</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/Lexer" data-name="config::lexer">
+      <a href="../Config/Lexer.html">Lexer</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/Location" data-name="config::location">
+      <a href="../Config/Location.html">Location</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/Macros" data-name="config::macros">
+      <a href="../Config/Macros.html">Macros</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/ParseException" data-name="config::parseexception">
+      <a href="../Config/ParseException.html">ParseException</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/Parser" data-name="config::parser">
+      <a href="../Config/Parser.html">Parser</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/StringCursor" data-name="config::stringcursor">
+      <a href="../Config/StringCursor.html">StringCursor</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/Token" data-name="config::token">
+      <a href="../Config/Token.html">Token</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/Type" data-name="config::type">
+      <a href="../Config/Type.html">Type</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="config/Object" data-name="object">
+      <a href="../Object.html">Object</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Regex" data-name="regex">
+      <a href="../Regex.html">Regex</a>
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">struct</span> Config::Any
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Config/Any.html">Config::Any</a></li><li class="superclass">Struct</li><li class="superclass">Value</li><li class="superclass"><a href="../Object.html">Object</a></li></ul>
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type">Enumerable(<a href="../Config/Any.html">Config::Any</a>)</li>
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L16" target="_blank">
+        config/any.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new(raw:Config::Type)-class-method" class="signature"><strong>.new</strong>(raw : Config::Type)</a>
+        
+          <div class="summary"><p>Creates a <code><a href="../Config/Any.html">Config::Any</a></code> that wraps the given <code><a href="../Config/Type.html">Config::Type</a></code>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#==(other)-instance-method" class="signature"><strong>#==</strong>(other)</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if the raw object is equal to <em>other</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#==(other:Config::Any)-instance-method" class="signature"><strong>#==</strong>(other : Config::Any)</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if both <code>self</code> and <em>other</em>'s raw object are equal.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#[](index:Int::Primitive):Any-instance-method" class="signature"><strong>#[]</strong>(index : Int::Primitive) : Any</a>
+        
+          <div class="summary"><p>Assumes the underlying value is an <code>Array</code> and returns the element at the given index.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#[](key:String):Any-instance-method" class="signature"><strong>#[]</strong>(key : String) : Any</a>
+        
+          <div class="summary"><p>Assumes the underlying value is a <code>Hash</code> and returns the element with the given key.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#[]?(index:Int::Primitive):Any?-instance-method" class="signature"><strong>#[]?</strong>(index : Int::Primitive) : Any?</a>
+        
+          <div class="summary"><p>Assumes the underlying value is an <code>Array</code> and returns the element at the given index, or <code>nil</code> if out of bounds.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#[]?(key:String):Any?-instance-method" class="signature"><strong>#[]?</strong>(key : String) : Any?</a>
+        
+          <div class="summary"><p>Assumes the underlying value is a <code>Hash</code> and returns the element with the given key, or <code>nil</code> if the key is not present.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_a(*path:KeyTypes):Array(Any)-instance-method" class="signature"><strong>#as_a</strong>(*path : KeyTypes) : Array(Any)</a>
+        
+          <div class="summary"><p>Assumes the underlying value is indexable and returns the specified element at the given key path as an <code>Array(<a href="../Config/Any.html">Any</a>)</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_a(*path:KeyTypes,each_as:U.class,&block:U-%3ENil):NilforallU-instance-method" class="signature"><strong>#as_a</strong>(*path : KeyTypes, each_as : <span class="t">U</span>.<span class="k">class</span>, &block : U -> Nil) : Nil forall U</a>
+        
+          <div class="summary"><p>Assumes the underlying value is indexable and yields each element at the given key path as type <code>U</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_a:Array(Any)-instance-method" class="signature"><strong>#as_a</strong> : Array(Any)</a>
+        
+          <div class="summary"><p>Returns the underlying value as an <code>Array(<a href="../Config/Any.html">Any</a>)</code> if it can.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_a(*path:KeyTypes,each_as:U.class):Array(U)forallU-instance-method" class="signature"><strong>#as_a</strong>(*path : KeyTypes, each_as : <span class="t">U</span>.<span class="k">class</span>) : Array(U) forall U</a>
+        
+          <div class="summary"><p>Assumes the underlying value is indexable and returns the specified element at the given key path as an <code>Array</code> of type <code>U</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_a?:Array(Any)?-instance-method" class="signature"><strong>#as_a?</strong> : Array(Any)?</a>
+        
+          <div class="summary"><p>Returns the underlying value as an <code>Array(<a href="../Config/Any.html">Any</a>)</code> if it can.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_a?(*path:KeyTypes):Array(Any)?-instance-method" class="signature"><strong>#as_a?</strong>(*path : KeyTypes) : Array(Any)?</a>
+        
+          <div class="summary"><p>Assumes the underlying value is indexable and returns the specified element at the given key path as an <code>Array(<a href="../Config/Any.html">Any</a>)</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_a?(*path:KeyTypes,each_as:U.class?=nil,&block:U-%3ENil):BoolforallU-instance-method" class="signature"><strong>#as_a?</strong>(*path : KeyTypes, each_as : <span class="t">U</span>.<span class="k">class</span>? = <span class="n">nil</span>, &block : U -> Nil) : Bool forall U</a>
+        
+          <div class="summary"><p>Assumes the underlying value is indexable and yields each element at the given key path as type <code>U</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_a?(*path:KeyTypes,each_as:U.class,skip:Bool=true):Array(U)?forallU-instance-method" class="signature"><strong>#as_a?</strong>(*path : KeyTypes, each_as : <span class="t">U</span>.<span class="k">class</span>, skip : Bool = <span class="n">true</span>) : Array(U)? forall U</a>
+        
+          <div class="summary"><p>Assumes the underlying value is indexable and returns the specified element at the given key path as an <code>Array</code> of type <code>U</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_bool(*path:KeyTypes):Bool-instance-method" class="signature"><strong>#as_bool</strong>(*path : KeyTypes) : Bool</a>
+        
+          <div class="summary"><p>Assumes the underlying value is indexable and returns the element with the given key as a <code>Bool</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_bool:Bool-instance-method" class="signature"><strong>#as_bool</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns the underlying value as an <code>Bool</code> if it can.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_bool?(*path:KeyTypes):Bool?-instance-method" class="signature"><strong>#as_bool?</strong>(*path : KeyTypes) : Bool?</a>
+        
+          <div class="summary"><p>Assumes the underlying value is indexable and returns the element with the given key as a <code>Bool</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_bool?:Bool?-instance-method" class="signature"><strong>#as_bool?</strong> : Bool?</a>
+        
+          <div class="summary"><p>Returns the underlying value as an <code>Bool</code> if it can.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_f:Float64-instance-method" class="signature"><strong>#as_f</strong> : Float64</a>
+        
+          <div class="summary"><p>Returns the underlying value as an <code>Float64</code> if it can.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_f(*path:KeyTypes):Float64-instance-method" class="signature"><strong>#as_f</strong>(*path : KeyTypes) : Float64</a>
+        
+          <div class="summary"><p>Assumes the underlying value is indexable and returns the element with the given key as a <code>Float64</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_f32(*path:KeyTypes):Float32-instance-method" class="signature"><strong>#as_f32</strong>(*path : KeyTypes) : Float32</a>
+        
+          <div class="summary"><p>Assumes the underlying value is indexable and returns the element with the given key as a <code>Float32</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_f32:Float32-instance-method" class="signature"><strong>#as_f32</strong> : Float32</a>
+        
+          <div class="summary"><p>Returns the underlying value as an <code>Float32</code> if it can.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_f32?(*path:KeyTypes):Float32?-instance-method" class="signature"><strong>#as_f32?</strong>(*path : KeyTypes) : Float32?</a>
+        
+          <div class="summary"><p>Assumes the underlying value is indexable and returns the element with the given key as a <code>Float32</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_f32?:Float32?-instance-method" class="signature"><strong>#as_f32?</strong> : Float32?</a>
+        
+          <div class="summary"><p>Returns the underlying value as an <code>Float32</code> if it can.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_f?:Float64?-instance-method" class="signature"><strong>#as_f?</strong> : Float64?</a>
+        
+          <div class="summary"><p>Returns the underlying value as an <code>Float64</code> if it can.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_f?(*path:KeyTypes):Float64?-instance-method" class="signature"><strong>#as_f?</strong>(*path : KeyTypes) : Float64?</a>
+        
+          <div class="summary"><p>Assumes the underlying value is indexable and returns the element with the given key as a <code>Float64</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_h(*path:KeyTypes,each_as:U.class):Hash(String,U)forallU-instance-method" class="signature"><strong>#as_h</strong>(*path : KeyTypes, each_as : <span class="t">U</span>.<span class="k">class</span>) : Hash(String, U) forall U</a>
+        
+          <div class="summary"><p>Assumes the underlying value is indexable and returns the specified element at the given key path as a <code>Hash</code> of type <code>U</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_h:Hash(String,Any)-instance-method" class="signature"><strong>#as_h</strong> : Hash(String, Any)</a>
+        
+          <div class="summary"><p>Returns the underlying value as an <code>Hash(String, <a href="../Config/Any.html">Any</a>)</code> if it can.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_h(*path:KeyTypes):Hash(String,Any)-instance-method" class="signature"><strong>#as_h</strong>(*path : KeyTypes) : Hash(String, Any)</a>
+        
+          <div class="summary"><p>Assumes the underlying value is indexable and returns the specified element at the given key path as an <code>Hash(String, <a href="../Config/Any.html">Any</a>)</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_h(*path:KeyTypes,each_as:U.class,&block:String,U-%3ENil):NilforallU-instance-method" class="signature"><strong>#as_h</strong>(*path : KeyTypes, each_as : <span class="t">U</span>.<span class="k">class</span>, &block : String, U -> Nil) : Nil forall U</a>
+        
+          <div class="summary"><p>Assumes the underlying value is indexable and yields each element at the given key path as type <code>U</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_h?:Hash(String,Any)?-instance-method" class="signature"><strong>#as_h?</strong> : Hash(String, Any)?</a>
+        
+          <div class="summary"><p>Returns the underlying value as an <code>Hash(String, <a href="../Config/Any.html">Any</a>)</code> if it can.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_h?(*path:KeyTypes):Hash(String,Any)?-instance-method" class="signature"><strong>#as_h?</strong>(*path : KeyTypes) : Hash(String, Any)?</a>
+        
+          <div class="summary"><p>Assumes the underlying value is indexable and returns the specified element at the given key path as an <code>Hash(String, <a href="../Config/Any.html">Any</a>)</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_h?(*path:KeyTypes,each_as:U.class?=nil,&block:String,U-%3ENil):BoolforallU-instance-method" class="signature"><strong>#as_h?</strong>(*path : KeyTypes, each_as : <span class="t">U</span>.<span class="k">class</span>? = <span class="n">nil</span>, &block : String, U -> Nil) : Bool forall U</a>
+        
+          <div class="summary"><p>Assumes the underlying value is indexable and yields each element at the given key path as type <code>U</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_h?(*path:KeyTypes,each_as:U.class,skip:Bool=true):Hash(String,U)?forallU-instance-method" class="signature"><strong>#as_h?</strong>(*path : KeyTypes, each_as : <span class="t">U</span>.<span class="k">class</span>, skip : Bool = <span class="n">true</span>) : Hash(String, U)? forall U</a>
+        
+          <div class="summary"><p>Assumes the underlying value is indexable and returns the specified element at the given key path as a <code>Hash</code> of type <code>U</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_i(*path:KeyTypes):Int32-instance-method" class="signature"><strong>#as_i</strong>(*path : KeyTypes) : Int32</a>
+        
+          <div class="summary"><p>Assumes the underlying value is indexable and returns the element with the given key as a <code>Int32</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_i:Int32-instance-method" class="signature"><strong>#as_i</strong> : Int32</a>
+        
+          <div class="summary"><p>Returns the underlying value as an <code>Int32</code> if it can.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_i128:Int128-instance-method" class="signature"><strong>#as_i128</strong> : Int128</a>
+        
+          <div class="summary"><p>Returns the underlying value as an <code>Int128</code> if it can.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_i128(*path:KeyTypes):Int128-instance-method" class="signature"><strong>#as_i128</strong>(*path : KeyTypes) : Int128</a>
+        
+          <div class="summary"><p>Assumes the underlying value is indexable and returns the element with the given key as a <code>Int128</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_i128?(*path:KeyTypes):Int128?-instance-method" class="signature"><strong>#as_i128?</strong>(*path : KeyTypes) : Int128?</a>
+        
+          <div class="summary"><p>Assumes the underlying value is indexable and returns the element with the given key as a <code>Int128</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_i128?:Int128?-instance-method" class="signature"><strong>#as_i128?</strong> : Int128?</a>
+        
+          <div class="summary"><p>Returns the underlying value as an <code>Int128</code> if it can.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_i64(*path:KeyTypes):Int64-instance-method" class="signature"><strong>#as_i64</strong>(*path : KeyTypes) : Int64</a>
+        
+          <div class="summary"><p>Assumes the underlying value is indexable and returns the element with the given key as a <code>Int64</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_i64:Int64-instance-method" class="signature"><strong>#as_i64</strong> : Int64</a>
+        
+          <div class="summary"><p>Returns the underlying value as an <code>Int64</code> if it can.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_i64?:Int64?-instance-method" class="signature"><strong>#as_i64?</strong> : Int64?</a>
+        
+          <div class="summary"><p>Returns the underlying value as an <code>Int64</code> if it can.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_i64?(*path:KeyTypes):Int64?-instance-method" class="signature"><strong>#as_i64?</strong>(*path : KeyTypes) : Int64?</a>
+        
+          <div class="summary"><p>Assumes the underlying value is indexable and returns the element with the given key as a <code>Int64</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_i?(*path:KeyTypes):Int32?-instance-method" class="signature"><strong>#as_i?</strong>(*path : KeyTypes) : Int32?</a>
+        
+          <div class="summary"><p>Assumes the underlying value is indexable and returns the element with the given key as a <code>Int32</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_i?:Int32?-instance-method" class="signature"><strong>#as_i?</strong> : Int32?</a>
+        
+          <div class="summary"><p>Returns the underlying value as an <code>Int32</code> if it can.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_s(*path:KeyTypes):String-instance-method" class="signature"><strong>#as_s</strong>(*path : KeyTypes) : String</a>
+        
+          <div class="summary"><p>Assumes the underlying value is indexable and returns the element with the given key as a <code>String</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_s:String-instance-method" class="signature"><strong>#as_s</strong> : String</a>
+        
+          <div class="summary"><p>Returns the underlying value as an <code>String</code> if it can.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_s?(*path:KeyTypes):String?-instance-method" class="signature"><strong>#as_s?</strong>(*path : KeyTypes) : String?</a>
+        
+          <div class="summary"><p>Assumes the underlying value is indexable and returns the element with the given key as a <code>String</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_s?:String?-instance-method" class="signature"><strong>#as_s?</strong> : String?</a>
+        
+          <div class="summary"><p>Returns the underlying value as an <code>String</code> if it can.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#dig(*path:KeyTypes):Any-instance-method" class="signature"><strong>#dig</strong>(*path : KeyTypes) : Any</a>
+        
+          <div class="summary"><p>Extracts the nested value specified by the sequence of path keys by calling dig at each step, raising if any intermediate step fails.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#dig?(*path:KeyTypes):Any?-instance-method" class="signature"><strong>#dig?</strong>(*path : KeyTypes) : Any?</a>
+        
+          <div class="summary"><p>Extracts the nested value specified by the sequence of path keys by calling dig at each step, returning <code>nil</code> if any intermediate step is <code>nil</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#each(&block:Any-%3E_)-instance-method" class="signature"><strong>#each</strong>(&block : Any -> _)</a>
+        
+          <div class="summary"><p>Assumes the underlying value is an <code>Array</code> or <code>Hash</code> and yields each of the elements or key/values, always as <code><a href="../Config/Any.html">Config::Any</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#hash(hasher)-instance-method" class="signature"><strong>#hash</strong>(hasher)</a>
+        
+          <div class="summary"><p>See <code>Object#hash(hasher)</code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#is_nil?(*path:KeyTypes):Bool-instance-method" class="signature"><strong>#is_nil?</strong>(*path : KeyTypes) : Bool</a>
+        
+          <div class="summary"><p>Assumes the underlying value is indexable and returns a <code>Bool</code> that indicates if the element at the given paths underlying value is <code>Nil</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#is_nil?:Bool-instance-method" class="signature"><strong>#is_nil?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns a <code>Bool</code> indicating if the value at the key is <code>nil</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#raw:Config::Type-instance-method" class="signature"><strong>#raw</strong> : Config::Type</a>
+        
+          <div class="summary"><p>Returns the raw underlying value, a <code><a href="../Config/Type.html">Config::Type</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#size:Int-instance-method" class="signature"><strong>#size</strong> : Int</a>
+        
+          <div class="summary"><p>Assumes the underlying value is an <code>Array</code>, <code>Hash</code>, or <code>String</code> and returns its size.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#size?:Int32?-instance-method" class="signature"><strong>#size?</strong> : Int32?</a>
+        
+          <div class="summary"><p>Assumes the underlying value is an <code>Array</code>, <code>Hash</code>, or <code>String</code> and returns its size.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+  <h3>Instance methods inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#===(other:Config::Any)-instance-method" class="tooltip">
+      <span>===(other : Config::Any)</span>
+    ===</a>
+    
+  
+
+
+    
+
+
+    
+
+
+  
+</div>
+
+
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(raw:Config::Type)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(raw : <a href="../Config/Type.html">Config::Type</a>)
+
+        <a class="method-permalink" href="#new(raw:Config::Type)-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a <code><a href="../Config/Any.html">Config::Any</a></code> that wraps the given <code><a href="../Config/Type.html">Config::Type</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L26" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="==(other)-instance-method">
+      <div class="signature">
+        
+        def <strong>==</strong>(other)
+
+        <a class="method-permalink" href="#==(other)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if the raw object is equal to <em>other</em>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L450" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="==(other:Config::Any)-instance-method">
+      <div class="signature">
+        
+        def <strong>==</strong>(other : <a href="../Config/Any.html">Config::Any</a>)
+
+        <a class="method-permalink" href="#==(other:Config::Any)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if both <code>self</code> and <em>other</em>'s raw object are equal.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L445" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="[](index:Int::Primitive):Any-instance-method">
+      <div class="signature">
+        
+        def <strong>[]</strong>(index : Int::Primitive) : <a href="../Config/Any.html">Any</a>
+
+        <a class="method-permalink" href="#[](index:Int::Primitive):Any-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is an <code>Array</code> and returns the element at the
+given index.</p>
+
+<p>Raises if the underlying value is not an <code>Array</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L53" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="[](key:String):Any-instance-method">
+      <div class="signature">
+        
+        def <strong>[]</strong>(key : String) : <a href="../Config/Any.html">Any</a>
+
+        <a class="method-permalink" href="#[](key:String):Any-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is a <code>Hash</code> and returns the element with the
+given key.</p>
+
+<p>Raises if the underlying value is not a <code>Hash</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L74" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="[]?(index:Int::Primitive):Any?-instance-method">
+      <div class="signature">
+        
+        def <strong>[]?</strong>(index : Int::Primitive) : <a href="../Config/Any.html">Any</a>?
+
+        <a class="method-permalink" href="#[]?(index:Int::Primitive):Any?-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is an <code>Array</code> and returns the element at the
+given index, or <code>nil</code> if out of bounds.</p>
+
+<p>Raises if the underlying value is not an <code>Array</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L63" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="[]?(key:String):Any?-instance-method">
+      <div class="signature">
+        
+        def <strong>[]?</strong>(key : String) : <a href="../Config/Any.html">Any</a>?
+
+        <a class="method-permalink" href="#[]?(key:String):Any?-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is a <code>Hash</code> and returns the element with the
+given key, or <code>nil</code> if the key is not present.</p>
+
+<p>Raises if the underlying value is not a <code>Hash</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L84" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_a(*path:KeyTypes):Array(Any)-instance-method">
+      <div class="signature">
+        
+        def <strong>as_a</strong>(*path : <a href="../Config/Any/KeyTypes.html">KeyTypes</a>) : Array(<a href="../Config/Any.html">Any</a>)
+
+        <a class="method-permalink" href="#as_a(*path:KeyTypes):Array(Any)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is indexable and returns the specified element
+at the given key path as an <code>Array(<a href="../Config/Any.html">Any</a>)</code>.</p>
+
+<p>Raises if it is not an <code>Array</code> or not found.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L239" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_a(*path:KeyTypes,each_as:U.class,&block:U->Nil):NilforallU-instance-method">
+      <div class="signature">
+        
+        def <strong>as_a</strong>(*path : <a href="../Config/Any/KeyTypes.html">KeyTypes</a>, each_as : <span class="t">U</span>.<span class="k">class</span>, &block : U -> Nil) : Nil forall U
+
+        <a class="method-permalink" href="#as_a(*path:KeyTypes,each_as:U.class,&block:U-%3ENil):NilforallU-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is indexable and yields each element at the
+given key path as type <code>U</code>.</p>
+
+<p>Raises if it is not an <code>Array</code>, not found, or an entry is not able to be
+cast to type <code>U</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L292" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_a:Array(Any)-instance-method">
+      <div class="signature">
+        
+        def <strong>as_a</strong> : Array(<a href="../Config/Any.html">Any</a>)
+
+        <a class="method-permalink" href="#as_a:Array(Any)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the underlying value as an <code>Array(<a href="../Config/Any.html">Any</a>)</code> if it can.</p>
+
+<p>Raises otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L222" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_a(*path:KeyTypes,each_as:U.class):Array(U)forallU-instance-method">
+      <div class="signature">
+        
+        def <strong>as_a</strong>(*path : <a href="../Config/Any/KeyTypes.html">KeyTypes</a>, each_as : <span class="t">U</span>.<span class="k">class</span>) : Array(U) forall U
+
+        <a class="method-permalink" href="#as_a(*path:KeyTypes,each_as:U.class):Array(U)forallU-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is indexable and returns the specified element
+at the given key path as an <code>Array</code> of type <code>U</code>.</p>
+
+<p>Raises if it is not an <code>Array</code>, not found, or an entry is not able to be
+cast to type <code>U</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L258" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_a?:Array(Any)?-instance-method">
+      <div class="signature">
+        
+        def <strong>as_a?</strong> : Array(<a href="../Config/Any.html">Any</a>)?
+
+        <a class="method-permalink" href="#as_a?:Array(Any)?-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the underlying value as an <code>Array(<a href="../Config/Any.html">Any</a>)</code> if it can.</p>
+
+<p>Returns <code>nil</code> otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L229" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_a?(*path:KeyTypes):Array(Any)?-instance-method">
+      <div class="signature">
+        
+        def <strong>as_a?</strong>(*path : <a href="../Config/Any/KeyTypes.html">KeyTypes</a>) : Array(<a href="../Config/Any.html">Any</a>)?
+
+        <a class="method-permalink" href="#as_a?(*path:KeyTypes):Array(Any)?-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is indexable and returns the specified element
+at the given key path as an <code>Array(<a href="../Config/Any.html">Any</a>)</code>.</p>
+
+<p>Returns <code>nil</code> if it is not an <code>Array</code> or not found.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L247" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_a?(*path:KeyTypes,each_as:U.class?=nil,&block:U->Nil):BoolforallU-instance-method">
+      <div class="signature">
+        
+        def <strong>as_a?</strong>(*path : <a href="../Config/Any/KeyTypes.html">KeyTypes</a>, each_as : <span class="t">U</span>.<span class="k">class</span>? = <span class="n">nil</span>, &block : U -> Nil) : Bool forall U
+
+        <a class="method-permalink" href="#as_a?(*path:KeyTypes,each_as:U.class?=nil,&block:U-%3ENil):BoolforallU-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is indexable and yields each element at the
+given key path as type <code>U</code>.</p>
+
+<p>Returns a <code>Bool</code> indicating if the <code>Array</code> was found.</p>
+
+<p>Note: If an entry is not able to be cast to type <code>U</code> it is skipped.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L302" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_a?(*path:KeyTypes,each_as:U.class,skip:Bool=true):Array(U)?forallU-instance-method">
+      <div class="signature">
+        
+        def <strong>as_a?</strong>(*path : <a href="../Config/Any/KeyTypes.html">KeyTypes</a>, each_as : <span class="t">U</span>.<span class="k">class</span>, skip : Bool = <span class="n">true</span>) : Array(U)? forall U
+
+        <a class="method-permalink" href="#as_a?(*path:KeyTypes,each_as:U.class,skip:Bool=true):Array(U)?forallU-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is indexable and returns the specified element
+at the given key path as an <code>Array</code> of type <code>U</code>.</p>
+
+<p>Returns <code>nil</code> if it is not an <code>Array</code> or not found.</p>
+
+<p>Note: If an entry is not able to be cast to type <code>U</code> and <code>skip</code> is not
+false (the default) it is skipped.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L269" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_bool(*path:KeyTypes):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>as_bool</strong>(*path : <a href="../Config/Any/KeyTypes.html">KeyTypes</a>) : Bool
+
+        <a class="method-permalink" href="#as_bool(*path:KeyTypes):Bool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is indexable and returns the element with the
+given key as a <code>Bool</code>.</p>
+
+<p>Raises otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_bool:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>as_bool</strong> : Bool
+
+        <a class="method-permalink" href="#as_bool:Bool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the underlying value as an <code>Bool</code> if it can.</p>
+
+<p>Raises otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_bool?(*path:KeyTypes):Bool?-instance-method">
+      <div class="signature">
+        
+        def <strong>as_bool?</strong>(*path : <a href="../Config/Any/KeyTypes.html">KeyTypes</a>) : Bool?
+
+        <a class="method-permalink" href="#as_bool?(*path:KeyTypes):Bool?-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is indexable and returns the element with the
+given key as a <code>Bool</code>.</p>
+
+<p>Returns <code>nil</code> otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_bool?:Bool?-instance-method">
+      <div class="signature">
+        
+        def <strong>as_bool?</strong> : Bool?
+
+        <a class="method-permalink" href="#as_bool?:Bool?-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the underlying value as an <code>Bool</code> if it can.</p>
+
+<p>Returns <code>nil</code> otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_f:Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>as_f</strong> : Float64
+
+        <a class="method-permalink" href="#as_f:Float64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the underlying value as an <code>Float64</code> if it can.</p>
+
+<p>Raises otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_f(*path:KeyTypes):Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>as_f</strong>(*path : <a href="../Config/Any/KeyTypes.html">KeyTypes</a>) : Float64
+
+        <a class="method-permalink" href="#as_f(*path:KeyTypes):Float64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is indexable and returns the element with the
+given key as a <code>Float64</code>.</p>
+
+<p>Raises otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_f32(*path:KeyTypes):Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>as_f32</strong>(*path : <a href="../Config/Any/KeyTypes.html">KeyTypes</a>) : Float32
+
+        <a class="method-permalink" href="#as_f32(*path:KeyTypes):Float32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is indexable and returns the element with the
+given key as a <code>Float32</code>.</p>
+
+<p>Raises otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_f32:Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>as_f32</strong> : Float32
+
+        <a class="method-permalink" href="#as_f32:Float32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the underlying value as an <code>Float32</code> if it can.</p>
+
+<p>Raises otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_f32?(*path:KeyTypes):Float32?-instance-method">
+      <div class="signature">
+        
+        def <strong>as_f32?</strong>(*path : <a href="../Config/Any/KeyTypes.html">KeyTypes</a>) : Float32?
+
+        <a class="method-permalink" href="#as_f32?(*path:KeyTypes):Float32?-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is indexable and returns the element with the
+given key as a <code>Float32</code>.</p>
+
+<p>Returns <code>nil</code> otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_f32?:Float32?-instance-method">
+      <div class="signature">
+        
+        def <strong>as_f32?</strong> : Float32?
+
+        <a class="method-permalink" href="#as_f32?:Float32?-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the underlying value as an <code>Float32</code> if it can.</p>
+
+<p>Returns <code>nil</code> otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_f?:Float64?-instance-method">
+      <div class="signature">
+        
+        def <strong>as_f?</strong> : Float64?
+
+        <a class="method-permalink" href="#as_f?:Float64?-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the underlying value as an <code>Float64</code> if it can.</p>
+
+<p>Returns <code>nil</code> otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_f?(*path:KeyTypes):Float64?-instance-method">
+      <div class="signature">
+        
+        def <strong>as_f?</strong>(*path : <a href="../Config/Any/KeyTypes.html">KeyTypes</a>) : Float64?
+
+        <a class="method-permalink" href="#as_f?(*path:KeyTypes):Float64?-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is indexable and returns the element with the
+given key as a <code>Float64</code>.</p>
+
+<p>Returns <code>nil</code> otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_h(*path:KeyTypes,each_as:U.class):Hash(String,U)forallU-instance-method">
+      <div class="signature">
+        
+        def <strong>as_h</strong>(*path : <a href="../Config/Any/KeyTypes.html">KeyTypes</a>, each_as : <span class="t">U</span>.<span class="k">class</span>) : Hash(String, U) forall U
+
+        <a class="method-permalink" href="#as_h(*path:KeyTypes,each_as:U.class):Hash(String,U)forallU-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is indexable and returns the specified element
+at the given key path as a <code>Hash</code> of type <code>U</code>.</p>
+
+<p>Raises if it is not an <code>Hash</code>, not found, or an entry is not able to be
+cast to type <code>U</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L360" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_h:Hash(String,Any)-instance-method">
+      <div class="signature">
+        
+        def <strong>as_h</strong> : Hash(String, <a href="../Config/Any.html">Any</a>)
+
+        <a class="method-permalink" href="#as_h:Hash(String,Any)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the underlying value as an <code>Hash(String, <a href="../Config/Any.html">Any</a>)</code> if it can.</p>
+
+<p>Raises otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L323" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_h(*path:KeyTypes):Hash(String,Any)-instance-method">
+      <div class="signature">
+        
+        def <strong>as_h</strong>(*path : <a href="../Config/Any/KeyTypes.html">KeyTypes</a>) : Hash(String, <a href="../Config/Any.html">Any</a>)
+
+        <a class="method-permalink" href="#as_h(*path:KeyTypes):Hash(String,Any)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is indexable and returns the specified element
+at the given key path as an <code>Hash(String, <a href="../Config/Any.html">Any</a>)</code>.</p>
+
+<p>Raises if it is not an <code>Hash</code> or not found.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L341" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_h(*path:KeyTypes,each_as:U.class,&block:String,U->Nil):NilforallU-instance-method">
+      <div class="signature">
+        
+        def <strong>as_h</strong>(*path : <a href="../Config/Any/KeyTypes.html">KeyTypes</a>, each_as : <span class="t">U</span>.<span class="k">class</span>, &block : String, U -> Nil) : Nil forall U
+
+        <a class="method-permalink" href="#as_h(*path:KeyTypes,each_as:U.class,&block:String,U-%3ENil):NilforallU-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is indexable and yields each element at the
+given key path as type <code>U</code>.</p>
+
+<p>Raises if it is not a <code>Hash</code>, not found, or an entry is not able to be
+cast to type <code>U</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L400" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_h?:Hash(String,Any)?-instance-method">
+      <div class="signature">
+        
+        def <strong>as_h?</strong> : Hash(String, <a href="../Config/Any.html">Any</a>)?
+
+        <a class="method-permalink" href="#as_h?:Hash(String,Any)?-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the underlying value as an <code>Hash(String, <a href="../Config/Any.html">Any</a>)</code> if it can.</p>
+
+<p>Returns <code>nil</code> otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L333" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_h?(*path:KeyTypes):Hash(String,Any)?-instance-method">
+      <div class="signature">
+        
+        def <strong>as_h?</strong>(*path : <a href="../Config/Any/KeyTypes.html">KeyTypes</a>) : Hash(String, <a href="../Config/Any.html">Any</a>)?
+
+        <a class="method-permalink" href="#as_h?(*path:KeyTypes):Hash(String,Any)?-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is indexable and returns the specified element
+at the given key path as an <code>Hash(String, <a href="../Config/Any.html">Any</a>)</code>.</p>
+
+<p>Returns <code>nil</code> if it is not an <code>Hash</code> or not found.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L349" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_h?(*path:KeyTypes,each_as:U.class?=nil,&block:String,U->Nil):BoolforallU-instance-method">
+      <div class="signature">
+        
+        def <strong>as_h?</strong>(*path : <a href="../Config/Any/KeyTypes.html">KeyTypes</a>, each_as : <span class="t">U</span>.<span class="k">class</span>? = <span class="n">nil</span>, &block : String, U -> Nil) : Bool forall U
+
+        <a class="method-permalink" href="#as_h?(*path:KeyTypes,each_as:U.class?=nil,&block:String,U-%3ENil):BoolforallU-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is indexable and yields each element at the
+given key path as type <code>U</code>.</p>
+
+<p>Returns a <code>Bool</code> indicating if the <code>Hash</code> was found.</p>
+
+<p>Note: If an entry is not able to be cast to type <code>U</code> it is skipped.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L410" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_h?(*path:KeyTypes,each_as:U.class,skip:Bool=true):Hash(String,U)?forallU-instance-method">
+      <div class="signature">
+        
+        def <strong>as_h?</strong>(*path : <a href="../Config/Any/KeyTypes.html">KeyTypes</a>, each_as : <span class="t">U</span>.<span class="k">class</span>, skip : Bool = <span class="n">true</span>) : Hash(String, U)? forall U
+
+        <a class="method-permalink" href="#as_h?(*path:KeyTypes,each_as:U.class,skip:Bool=true):Hash(String,U)?forallU-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is indexable and returns the specified element
+at the given key path as a <code>Hash</code> of type <code>U</code>.</p>
+
+<p>Returns <code>nil</code> if it is not a <code>Hash</code> or not found.</p>
+
+<p>Note: If an entry is not able to be cast to type <code>U</code> and <code>skip</code> is not
+false (the default) it is skipped.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L374" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_i(*path:KeyTypes):Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>as_i</strong>(*path : <a href="../Config/Any/KeyTypes.html">KeyTypes</a>) : Int32
+
+        <a class="method-permalink" href="#as_i(*path:KeyTypes):Int32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is indexable and returns the element with the
+given key as a <code>Int32</code>.</p>
+
+<p>Raises otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_i:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>as_i</strong> : Int32
+
+        <a class="method-permalink" href="#as_i:Int32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the underlying value as an <code>Int32</code> if it can.</p>
+
+<p>Raises otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_i128:Int128-instance-method">
+      <div class="signature">
+        
+        def <strong>as_i128</strong> : Int128
+
+        <a class="method-permalink" href="#as_i128:Int128-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the underlying value as an <code>Int128</code> if it can.</p>
+
+<p>Raises otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_i128(*path:KeyTypes):Int128-instance-method">
+      <div class="signature">
+        
+        def <strong>as_i128</strong>(*path : <a href="../Config/Any/KeyTypes.html">KeyTypes</a>) : Int128
+
+        <a class="method-permalink" href="#as_i128(*path:KeyTypes):Int128-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is indexable and returns the element with the
+given key as a <code>Int128</code>.</p>
+
+<p>Raises otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_i128?(*path:KeyTypes):Int128?-instance-method">
+      <div class="signature">
+        
+        def <strong>as_i128?</strong>(*path : <a href="../Config/Any/KeyTypes.html">KeyTypes</a>) : Int128?
+
+        <a class="method-permalink" href="#as_i128?(*path:KeyTypes):Int128?-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is indexable and returns the element with the
+given key as a <code>Int128</code>.</p>
+
+<p>Returns <code>nil</code> otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_i128?:Int128?-instance-method">
+      <div class="signature">
+        
+        def <strong>as_i128?</strong> : Int128?
+
+        <a class="method-permalink" href="#as_i128?:Int128?-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the underlying value as an <code>Int128</code> if it can.</p>
+
+<p>Returns <code>nil</code> otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_i64(*path:KeyTypes):Int64-instance-method">
+      <div class="signature">
+        
+        def <strong>as_i64</strong>(*path : <a href="../Config/Any/KeyTypes.html">KeyTypes</a>) : Int64
+
+        <a class="method-permalink" href="#as_i64(*path:KeyTypes):Int64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is indexable and returns the element with the
+given key as a <code>Int64</code>.</p>
+
+<p>Raises otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_i64:Int64-instance-method">
+      <div class="signature">
+        
+        def <strong>as_i64</strong> : Int64
+
+        <a class="method-permalink" href="#as_i64:Int64-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the underlying value as an <code>Int64</code> if it can.</p>
+
+<p>Raises otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_i64?:Int64?-instance-method">
+      <div class="signature">
+        
+        def <strong>as_i64?</strong> : Int64?
+
+        <a class="method-permalink" href="#as_i64?:Int64?-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the underlying value as an <code>Int64</code> if it can.</p>
+
+<p>Returns <code>nil</code> otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_i64?(*path:KeyTypes):Int64?-instance-method">
+      <div class="signature">
+        
+        def <strong>as_i64?</strong>(*path : <a href="../Config/Any/KeyTypes.html">KeyTypes</a>) : Int64?
+
+        <a class="method-permalink" href="#as_i64?(*path:KeyTypes):Int64?-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is indexable and returns the element with the
+given key as a <code>Int64</code>.</p>
+
+<p>Returns <code>nil</code> otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_i?(*path:KeyTypes):Int32?-instance-method">
+      <div class="signature">
+        
+        def <strong>as_i?</strong>(*path : <a href="../Config/Any/KeyTypes.html">KeyTypes</a>) : Int32?
+
+        <a class="method-permalink" href="#as_i?(*path:KeyTypes):Int32?-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is indexable and returns the element with the
+given key as a <code>Int32</code>.</p>
+
+<p>Returns <code>nil</code> otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_i?:Int32?-instance-method">
+      <div class="signature">
+        
+        def <strong>as_i?</strong> : Int32?
+
+        <a class="method-permalink" href="#as_i?:Int32?-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the underlying value as an <code>Int32</code> if it can.</p>
+
+<p>Returns <code>nil</code> otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_s(*path:KeyTypes):String-instance-method">
+      <div class="signature">
+        
+        def <strong>as_s</strong>(*path : <a href="../Config/Any/KeyTypes.html">KeyTypes</a>) : String
+
+        <a class="method-permalink" href="#as_s(*path:KeyTypes):String-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is indexable and returns the element with the
+given key as a <code>String</code>.</p>
+
+<p>Raises otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_s:String-instance-method">
+      <div class="signature">
+        
+        def <strong>as_s</strong> : String
+
+        <a class="method-permalink" href="#as_s:String-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the underlying value as an <code>String</code> if it can.</p>
+
+<p>Raises otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_s?(*path:KeyTypes):String?-instance-method">
+      <div class="signature">
+        
+        def <strong>as_s?</strong>(*path : <a href="../Config/Any/KeyTypes.html">KeyTypes</a>) : String?
+
+        <a class="method-permalink" href="#as_s?(*path:KeyTypes):String?-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is indexable and returns the element with the
+given key as a <code>String</code>.</p>
+
+<p>Returns <code>nil</code> otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_s?:String?-instance-method">
+      <div class="signature">
+        
+        def <strong>as_s?</strong> : String?
+
+        <a class="method-permalink" href="#as_s?:String?-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the underlying value as an <code>String</code> if it can.</p>
+
+<p>Returns <code>nil</code> otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L158" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="dig(*path:KeyTypes):Any-instance-method">
+      <div class="signature">
+        
+        def <strong>dig</strong>(*path : <a href="../Config/Any/KeyTypes.html">KeyTypes</a>) : <a href="../Config/Any.html">Any</a>
+
+        <a class="method-permalink" href="#dig(*path:KeyTypes):Any-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Extracts the nested value specified by the sequence of path keys by calling
+dig at each step, raising if any intermediate step fails.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L93" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="dig?(*path:KeyTypes):Any?-instance-method">
+      <div class="signature">
+        
+        def <strong>dig?</strong>(*path : <a href="../Config/Any/KeyTypes.html">KeyTypes</a>) : <a href="../Config/Any.html">Any</a>?
+
+        <a class="method-permalink" href="#dig?(*path:KeyTypes):Any?-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Extracts the nested value specified by the sequence of path keys by calling
+dig at each step, returning <code>nil</code> if any intermediate step is <code>nil</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L110" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="each(&block:Any->_)-instance-method">
+      <div class="signature">
+        
+        def <strong>each</strong>(&block : <a href="../Config/Any.html">Any</a> -> _)
+
+        <a class="method-permalink" href="#each(&block:Any-%3E_)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is an <code>Array</code> or <code>Hash</code> and yields each
+of the elements or key/values, always as <code><a href="../Config/Any.html">Config::Any</a></code>.
+Raises if the underlying value is not an <code>Array</code> or <code>Hash</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L137" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="hash(hasher)-instance-method">
+      <div class="signature">
+        
+        def <strong>hash</strong>(hasher)
+
+        <a class="method-permalink" href="#hash(hasher)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>See <code>Object#hash(hasher)</code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L455" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="is_nil?(*path:KeyTypes):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>is_nil?</strong>(*path : <a href="../Config/Any/KeyTypes.html">KeyTypes</a>) : Bool
+
+        <a class="method-permalink" href="#is_nil?(*path:KeyTypes):Bool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is indexable and returns a <code>Bool</code> that indicates
+if the element at the given paths underlying value is <code>Nil</code>.</p>
+
+<p>Raises if nothing exists at path.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L154" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="is_nil?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>is_nil?</strong> : Bool
+
+        <a class="method-permalink" href="#is_nil?:Bool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns a <code>Bool</code> indicating if the value at the key is <code>nil</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L146" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="raw:Config::Type-instance-method">
+      <div class="signature">
+        
+        def <strong>raw</strong> : <a href="../Config/Type.html">Config::Type</a>
+
+        <a class="method-permalink" href="#raw:Config::Type-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the raw underlying value, a <code><a href="../Config/Type.html">Config::Type</a></code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L23" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="size:Int-instance-method">
+      <div class="signature">
+        
+        def <strong>size</strong> : Int
+
+        <a class="method-permalink" href="#size:Int-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is an <code>Array</code>, <code>Hash</code>, or <code>String</code> and returns
+its size.</p>
+
+<p>Raises if the underlying value is not an <code>Array</code>, <code>Hash</code>, or <code>String</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L33" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="size?:Int32?-instance-method">
+      <div class="signature">
+        
+        def <strong>size?</strong> : Int32?
+
+        <a class="method-permalink" href="#size?:Int32?-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Assumes the underlying value is an <code>Array</code>, <code>Hash</code>, or <code>String</code> and returns
+its size.</p>
+
+<p>Raises if the underlying value is not an <code>Array</code>, <code>Hash</code>, or <code>String</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/any.cr#L43" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.36.1">
+<meta name="crystal_docs.project_version" content="HEAD">
+<meta name="crystal_docs.project_name" content="config">
+
+
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="config">
+  <title>Config::Location - config HEAD</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="../index.html">
+          config
+        </a>
+      </h1>
+
+      <span class="project-version">
+        HEAD
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent open current" data-id="config/Config" data-name="config">
+      <a href="../Config.html">Config</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="config/Config/Any" data-name="config::any">
+      <a href="../Config/Any.html">Any</a>
+      
+        <ul>
+  
+  <li class=" " data-id="config/Config/Any/KeyTypes" data-name="config::any::keytypes">
+      <a href="../Config/Any/KeyTypes.html">KeyTypes</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/Cursor" data-name="config::cursor">
+      <a href="../Config/Cursor.html">Cursor</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/Error" data-name="config::error">
+      <a href="../Config/Error.html">Error</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/IOCursor" data-name="config::iocursor">
+      <a href="../Config/IOCursor.html">IOCursor</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/Lexer" data-name="config::lexer">
+      <a href="../Config/Lexer.html">Lexer</a>
+      
+    </li>
+  
+  <li class=" current" data-id="config/Config/Location" data-name="config::location">
+      <a href="../Config/Location.html">Location</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/Macros" data-name="config::macros">
+      <a href="../Config/Macros.html">Macros</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/ParseException" data-name="config::parseexception">
+      <a href="../Config/ParseException.html">ParseException</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/Parser" data-name="config::parser">
+      <a href="../Config/Parser.html">Parser</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/StringCursor" data-name="config::stringcursor">
+      <a href="../Config/StringCursor.html">StringCursor</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/Token" data-name="config::token">
+      <a href="../Config/Token.html">Token</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/Type" data-name="config::type">
+      <a href="../Config/Type.html">Type</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="config/Object" data-name="object">
+      <a href="../Object.html">Object</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Regex" data-name="regex">
+      <a href="../Regex.html">Regex</a>
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">struct</span> Config::Location
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Config/Location.html">Config::Location</a></li><li class="superclass">Struct</li><li class="superclass">Value</li><li class="superclass"><a href="../Object.html">Object</a></li></ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/location.cr#L16" target="_blank">
+        config/location.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new-class-method" class="signature"><strong>.new</strong></a>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#column:UInt32-instance-method" class="signature"><strong>#column</strong> : UInt32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#column=(column:UInt32)-instance-method" class="signature"><strong>#column=</strong>(column : UInt32)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#line:UInt32-instance-method" class="signature"><strong>#line</strong> : UInt32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#line=(line:UInt32)-instance-method" class="signature"><strong>#line=</strong>(line : UInt32)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#newline-instance-method" class="signature"><strong>#newline</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#size:UInt32-instance-method" class="signature"><strong>#size</strong> : UInt32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#size=(size:UInt32)-instance-method" class="signature"><strong>#size=</strong>(size : UInt32)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s(io:IO)-instance-method" class="signature"><strong>#to_s</strong>(io : IO)</a>
+        
+          <div class="summary"><p>Same as <code>#inspect(io)</code>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+  <h3>Instance methods inherited from class <code><a href="../Object.html">Object</a></code></h3>
+  
+  
+    <a href="../Object.html#===(other:Config::Any)-instance-method" class="tooltip">
+      <span>===(other : Config::Any)</span>
+    ===</a>
+    
+  
+
+
+    
+
+
+    
+
+
+  
+</div>
+
+
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>
+
+        <a class="method-permalink" href="#new-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/location.cr#L20" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="column:UInt32-instance-method">
+      <div class="signature">
+        
+        def <strong>column</strong> : UInt32
+
+        <a class="method-permalink" href="#column:UInt32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/location.cr#L30" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="column=(column:UInt32)-instance-method">
+      <div class="signature">
+        
+        def <strong>column=</strong>(column : UInt32)
+
+        <a class="method-permalink" href="#column=(column:UInt32)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/location.cr#L30" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="line:UInt32-instance-method">
+      <div class="signature">
+        
+        def <strong>line</strong> : UInt32
+
+        <a class="method-permalink" href="#line:UInt32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/location.cr#L29" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="line=(line:UInt32)-instance-method">
+      <div class="signature">
+        
+        def <strong>line=</strong>(line : UInt32)
+
+        <a class="method-permalink" href="#line=(line:UInt32)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/location.cr#L29" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="newline-instance-method">
+      <div class="signature">
+        
+        def <strong>newline</strong>
+
+        <a class="method-permalink" href="#newline-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/location.cr#L36" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="size:UInt32-instance-method">
+      <div class="signature">
+        
+        def <strong>size</strong> : UInt32
+
+        <a class="method-permalink" href="#size:UInt32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/location.cr#L31" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="size=(size:UInt32)-instance-method">
+      <div class="signature">
+        
+        def <strong>size=</strong>(size : UInt32)
+
+        <a class="method-permalink" href="#size=(size:UInt32)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/location.cr#L31" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s(io:IO)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>(io : IO)
+
+        <a class="method-permalink" href="#to_s(io:IO)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from struct Struct
+            </div>
+          
+          <p>Same as <code>#inspect(io)</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/chris-huxtable/config.cr/blob/e5727c2b2e983ae2a261db1ef7bd70eb78060abc/src/config/location.cr#L41" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
+</body>
+</html>

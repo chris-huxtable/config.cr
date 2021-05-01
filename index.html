@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.36.1">
+<meta name="crystal_docs.project_version" content="HEAD">
+<meta name="crystal_docs.project_name" content="config">
+
+
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="config">
+  <title>config HEAD</title>
+  <script type="text/javascript">
+  CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="index.html">
+          config
+        </a>
+      </h1>
+
+      <span class="project-version">
+        HEAD
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent " data-id="config/Config" data-name="config">
+      <a href="Config.html">Config</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="config/Config/Any" data-name="config::any">
+      <a href="Config/Any.html">Any</a>
+      
+        <ul>
+  
+  <li class=" " data-id="config/Config/Any/KeyTypes" data-name="config::any::keytypes">
+      <a href="Config/Any/KeyTypes.html">KeyTypes</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/Cursor" data-name="config::cursor">
+      <a href="Config/Cursor.html">Cursor</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/Error" data-name="config::error">
+      <a href="Config/Error.html">Error</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/IOCursor" data-name="config::iocursor">
+      <a href="Config/IOCursor.html">IOCursor</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/Lexer" data-name="config::lexer">
+      <a href="Config/Lexer.html">Lexer</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/Location" data-name="config::location">
+      <a href="Config/Location.html">Location</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/Macros" data-name="config::macros">
+      <a href="Config/Macros.html">Macros</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/ParseException" data-name="config::parseexception">
+      <a href="Config/ParseException.html">ParseException</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/Parser" data-name="config::parser">
+      <a href="Config/Parser.html">Parser</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/StringCursor" data-name="config::stringcursor">
+      <a href="Config/StringCursor.html">StringCursor</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/Token" data-name="config::token">
+      <a href="Config/Token.html">Token</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Config/Type" data-name="config::type">
+      <a href="Config/Type.html">Type</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="config/Object" data-name="object">
+      <a href="Object.html">Object</a>
+      
+    </li>
+  
+  <li class=" " data-id="config/Regex" data-name="regex">
+      <a href="Regex.html">Regex</a>
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1><a id="config.cr" class="anchor" href="#config.cr">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>config.cr</h1>
+
+<p><a href="https://chris-huxtable.github.io/config.cr/"><img src="https://img.shields.io/badge/docs-available-brightgreen.svg" alt="Docs"/></a>
+<a href="https://github.com/chris-huxtable/config.cr/releases"><img src="https://img.shields.io/github/release/chris-huxtable/config.cr.svg" alt="GitHub release"/></a>
+<a href="https://travis-ci.org/chris-huxtable/config.cr"><img src="https://travis-ci.org/chris-huxtable/config.cr.svg?branch=master" alt="Build Status"/></a></p>
+
+<p><code>config.cr</code> is a parser for a configuration format designed to be more effective than JSON, YAML, INI, and HJSON. It also inherits aspects from  'OpenBSD style' configs like macros.</p>
+
+<pre><code class="language-crystal"><span class="c"># TL;DR</span>
+$self <span class="o">=</span> config.cr
+
+json:    <span class="t">Too</span> many quotes
+yaml:    <span class="t">Pays</span> attention to whitespace
+ini:     <span class="t">No</span> nesting
+hjson:   <span class="t">Data</span> oriented. <span class="t">Support</span>?
+openbsd: <span class="t">Macros</span> are awesome
+
+<span class="s">/* If only something combined the good
+   parts and got rid of the bad */</span>
+
+answer: $self</code></pre>
+
+<h2><a id="installation" class="anchor" href="#installation">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Installation</h2>
+
+<p>Add this to your application's <code>shard.yml</code>:</p>
+
+<pre><code class="language-yaml">dependencies:
+  config:
+    github: chris-huxtable/config.cr</code></pre>
+
+<h2><a id="usage" class="anchor" href="#usage">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Usage</h2>
+
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;config&quot;</span></code></pre>
+
+<p>You can parse a file with:</p>
+
+<pre><code class="language-crystal">config <span class="o">=</span> <span class="t">Config</span>.file(<span class="s">&quot;/path/to/file.conf&quot;</span>)</code></pre>
+
+<p>You can access the entries via the <code><a href="Config/Any.html">Config::Any</a></code> objects.</p>
+
+<pre><code class="language-crystal">config <span class="o">=</span> <span class="t">Config</span>.parse(<span class="s">&quot;username: chris, link: https://github.com/chris-huxtable/config.cr&quot;</span>)
+
+username <span class="o">=</span> config.as_s(<span class="s">&quot;username&quot;</span>)
+link <span class="o">=</span> config.as_a(<span class="s">&quot;link&quot;</span>)</code></pre>
+
+<h2><a id="format" class="anchor" href="#format">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Format</h2>
+
+<h3><a id="root-object" class="anchor" href="#root-object">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Root Object:</h3>
+
+<p>The root is considered an object. That is to say you must provide a key for any root entry and you should not wrap entries in <code>{}</code>.</p>
+
+<pre><code class="language-crystal">key: <span class="s">&quot;value&quot;</span></code></pre>
+
+<h3><a id="keys" class="anchor" href="#keys">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Keys:</h3>
+
+<p>Unlike JSON, object keys can be specified without quotes.</p>
+
+<pre><code class="language-crystal">rate: <span class="n">1000</span></code></pre>
+
+<h3><a id="strings" class="anchor" href="#strings">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Strings:</h3>
+
+<p>Unlike JSON, strings can be specified without quotes as long as it doesn't contain special characters like <code>:</code>, <code>=</code>, <code>{</code>, <code>}</code>, <code>[</code>, <code>]</code>, or <code>,</code>. Though, <code>:</code>, <code>=</code> are allowed if they are not a key.</p>
+
+<pre><code class="language-crystal">rate: <span class="t">This</span> is a string.</code></pre>
+
+<h3><a id="separators" class="anchor" href="#separators">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Separators:</h3>
+
+<p>Unlike JSON, entries can be separated with commas or newlines.</p>
+
+<pre><code class="language-crystal">first: <span class="n">1</span>
+second: <span class="n">2</span>, third: <span class="n">3</span></code></pre>
+
+<h3><a id="comments" class="anchor" href="#comments">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Comments:</h3>
+
+<p>There are three types of comments to support the common commenting styles.</p>
+
+<h4><a id="hash-comments" class="anchor" href="#hash-comments">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Hash Comments:</h4>
+
+<p>A to-end-of-line comment initiated by a <code>#</code> symbol. As common in Crystal, Ruby, Python, Shell, Perl, et al.</p>
+
+<pre><code class="language-crystal"><span class="c"># hash style comments</span>
+<span class="c"># (because it&#39;s just one character)</span></code></pre>
+
+<h4><a id="line-comments" class="anchor" href="#line-comments">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Line Comments:</h4>
+
+<p>A to-end-of-line comment initiated by a <code>//</code>. As common in C, Objective-C, C++, D, Swift, PHP, JavaScript, et al.</p>
+
+<pre><code class="language-crystal">// line style comments
+// (because it's like C/Objective-C/...)</code></pre>
+
+<h4><a id="block-comments" class="anchor" href="#block-comments">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Block Comments:</h4>
+
+<p>A block comment initiated by a <code>/*</code> and terminated by <code>*/</code>. As common in C, Objective-C, C++, D, Swift, PHP, et al.</p>
+
+<pre><code class="language-crystal"><span class="s">/* block style comments because
+   it allows you to comment out a block */</span></code></pre>
+
+<p>Note: This does not <em>yet</em> support nested comments.</p>
+
+<h3><a id="macros" class="anchor" href="#macros">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Macros:</h3>
+
+<p>A macro is a saved value which can be referenced in the rest fo the document. The key must be prefixed with a <code>$</code> and assigned with a <code>=</code> as opposed to a <code>:</code>.</p>
+
+<pre><code class="language-crystal">$defaultName <span class="o">=</span> <span class="s">&quot;Default Name&quot;</span>
+$nameKey <span class="o">=</span> name
+
+$defaultObject <span class="o">=</span> {
+	first: <span class="n">1</span>
+	second: <span class="n">2</span>
+}
+
+$nameKey: $defaultName
+object: $defaultObject</code></pre>
+
+<p>Note: Macro's cannot yet be inserted into strings.</p>
+
+<h3><a id="fault-tolerance" class="anchor" href="#fault-tolerance">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Fault Tolerance:</h3>
+
+<p>Recovers from easy to make  mistakes. Like useless commas.</p>
+
+<pre><code class="language-crystal">first: <span class="n">1</span>
+second: <span class="n">2</span>,
+third: <span class="n">3</span>,,,</code></pre>
+
+<h2><a id="contributing" class="anchor" href="#contributing">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Contributing</h2>
+
+<ol><li>Fork it ( https://github.com/chris-huxtable/config.cr/fork )</li><li>Create your feature branch (git checkout -b my-new-feature)</li><li>Commit your changes (git commit -am 'Add some feature')</li><li>Push to the branch (git push origin my-new-feature)</li><li>Create a new Pull Request</li></ol>
+
+<h2><a id="contributors" class="anchor" href="#contributors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Contributors</h2>
+
+<ul><li><a href="https://github.com/chris-huxtable">Chris Huxtable</a> - creator, maintainer</li></ul>
+</div>
+</body>
+</html>
